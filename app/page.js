@@ -5,12 +5,12 @@ export default function HomePage() {
     <main className="page-shell">
       <section className="hero" aria-label="Homemade Markets homepage hero">
         <Image
-          src="/homemade-markets-hero.jpg"
+          src="/homemade-markets-hero.webp"
           alt="Homemade Markets farmers market stand with pizza, jambalaya, desserts, navigation and brand messaging"
-          width={1063}
-          height={693}
+          width={600}
+          height={391}
           priority
-          sizes="(max-width: 1063px) 100vw, 1063px"
+          sizes="100vw"
           className="hero-image"
         />
       </section>
