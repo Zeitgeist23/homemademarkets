@@ -3,7 +3,7 @@ export default function HomePage() {
     <main style={{ margin: 0, width: '100%', minHeight: '100vh', background: '#f7f0e4' }}>
       <section style={{ width: '100%', margin: 0, padding: 0 }}>
         <img
-          src="/homemade-markets-hero.webp?v=20260725-4"
+          src="/HOMEMADE%20Hero%20Image%20of%20Farmer%27s%20Market%20WOOD%20FIRED.png?v=20260725-5"
           alt="Homemade Markets farmers market hero"
           style={{ display: 'block', width: '100%', height: 'auto', margin: 0, padding: 0 }}
         />
