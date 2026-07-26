@@ -1,3 +1,4 @@
+// Redeploy restored pre-change homepage.
 const hotspotStyle = {
   position: 'absolute',
   display: 'block',
