@@ -47,19 +47,36 @@ export default function HomePage() {
           <a aria-label="Market Dates" href="#market-dates" style={{ ...hotspotStyle, left: '17.2%', top: '2.6%', width: '8.8%', height: '5.2%' }} />
           <a aria-label="Catering" href="#catering" style={{ ...hotspotStyle, left: '26.3%', top: '2.6%', width: '6.2%', height: '5.2%' }} />
           <a aria-label="Shop" href="#shop" style={{ ...hotspotStyle, left: '33.2%', top: '2.6%', width: '4.2%', height: '5.2%' }} />
+
           <a
             aria-label="See Our Menu"
             href="/menu"
             style={{
-              ...hotspotStyle,
-              left: '69.6%',
-              top: '2.8%',
-              width: '11.9%',
-              height: '5.4%',
+              position: 'absolute',
+              left: '71.8%',
+              top: '2.4%',
+              width: '11.1%',
+              height: '5.6%',
+              zIndex: 50,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxSizing: 'border-box',
+              background: '#8f1014',
+              color: '#fff',
+              textDecoration: 'none',
+              borderRadius: '6px',
+              fontFamily: 'Arial, sans-serif',
+              fontSize: 'clamp(8px, 0.9vw, 16px)',
+              fontWeight: 700,
+              letterSpacing: '0.08em',
+              whiteSpace: 'nowrap',
               cursor: 'pointer',
-              background: 'transparent',
             }}
-          />
+          >
+            SEE OUR MENU
+          </a>
+
           <a aria-label="Find Us at a Market" href="#market-dates" style={{ ...hotspotStyle, left: '83.5%', top: '2.4%', width: '13.1%', height: '5.6%' }} />
           <a aria-label="Order Now" href="#order" style={{ ...hotspotStyle, left: '10.9%', top: '80.0%', width: '11.6%', height: '5.8%' }} />
         </div>
