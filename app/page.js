@@ -95,7 +95,7 @@ export default function HomePage() {
             href="https://www.facebook.com/HomemadeMarkets"
             target="_blank"
             rel="noreferrer"
-            style={{ ...topButtonStyle, left: '84.33185%' }}
+            style={{ ...topButtonStyle, left: 'calc(84.33185% - 3px)' }}
           >
             CONTACT US
           </a>
