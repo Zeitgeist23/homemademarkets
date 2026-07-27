@@ -73,3 +73,18 @@
   width: 7.3%;
   height: 5.4%;
 }
+
+/* Preserve the locked menu artwork and change only the Homemade Favorites heading size. */
+.poster-menu-stage::after {
+  content: "";
+  position: absolute;
+  left: 51.8%;
+  top: 56.05%;
+  z-index: 2;
+  width: 31.49%;
+  height: 4.03%;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20569%2041%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fce9d4%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23fcead6%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22569%22%20height%3D%2241%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Cline%20x1%3D%228%22%20y1%3D%2222%22%20x2%3D%2242%22%20y2%3D%2222%22%20stroke%3D%22%23dc9a86%22%20stroke-width%3D%222%22%2F%3E%3Ctext%20x%3D%2257%22%20y%3D%2228%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2218%22%20font-weight%3D%22700%22%20fill%3D%22%239d0b10%22%3E%E2%99%A5%3C%2Ftext%3E%3Ctext%20x%3D%22284.5%22%20y%3D%2232%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2235%22%20font-weight%3D%22700%22%20letter-spacing%3D%221.2%22%20fill%3D%22%23553828%22%3EHOMEMADE%20FAVORITES%3C%2Ftext%3E%3Ctext%20x%3D%22512%22%20y%3D%2228%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2218%22%20font-weight%3D%22700%22%20fill%3D%22%239d0b10%22%3E%E2%99%A5%3C%2Ftext%3E%3Cline%20x1%3D%22527%22%20y1%3D%2222%22%20x2%3D%22561%22%20y2%3D%2222%22%20stroke%3D%22%23dc9a86%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
