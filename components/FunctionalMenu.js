@@ -158,6 +158,13 @@ export default function FunctionalMenu() {
         <a className="poster-hotspot poster-logo-home" href="/" aria-label="Return to the Homemade Markets landing page" />
         <a className="poster-hotspot poster-see-menu" href="#menu-top" aria-label="See the Homemade Markets menu" />
         <a className="poster-hotspot poster-find-market" href="/#market-dates" aria-label="Find Homemade Markets at a market" />
+        <button
+          className="poster-hotspot poster-place-order"
+          type="button"
+          onClick={() => setDrawerOpen(true)}
+          aria-label={`Place order with ${itemCount} items in the cart`}
+          title="Place Order"
+        />
 
         {MENU_ITEMS.map((item) => (
           <button
