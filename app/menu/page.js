@@ -1,11 +1,11 @@
-import MenuExperience from '../../components/MenuExperience';
-import './menu.css';
-
-export const metadata = {
-  title: 'Menu | Homemade Markets',
-  description: 'Browse Homemade Markets pizzas, jambalaya, banana bread, and tiramisu, then build an order request online.',
-};
-
 export default function MenuPage() {
-  return <MenuExperience />;
+  return (
+    <main style={{ margin: 0, padding: 0, width: '100%', minHeight: '100vh', background: '#f7f0e4' }}>
+      <img
+        src="/homemade-markets-food-page.png?v=20260727-2"
+        alt="Homemade Markets food-items page featuring pizzas, jambalaya, chocolate chip banana bread, and tiramisu"
+        style={{ display: 'block', width: '100%', height: 'auto', margin: 0, padding: 0 }}
+      />
+    </main>
+  );
 }
