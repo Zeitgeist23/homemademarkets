@@ -10,7 +10,7 @@ const hotspotStyle = {
 const topButtonStyle = {
   position: 'absolute',
   top: '2.68%',
-  width: '11.79%',
+  width: '11.4363%',
   height: '5.04%',
   zIndex: 50,
   display: 'flex',
@@ -87,7 +87,7 @@ export default function HomePage() {
             }}
           />
 
-          <a aria-label="Find Us at a Market" href="#market-dates" style={{ ...topButtonStyle, left: '69.655%' }}>
+          <a aria-label="Find Us at a Market" href="#market-dates" style={{ ...topButtonStyle, left: '69.83185%' }}>
             FIND US AT A MARKET
           </a>
           <a
@@ -95,7 +95,7 @@ export default function HomePage() {
             href="https://www.facebook.com/HomemadeMarkets"
             target="_blank"
             rel="noreferrer"
-            style={{ ...topButtonStyle, left: '84.155%' }}
+            style={{ ...topButtonStyle, left: '84.33185%' }}
           >
             CONTACT US
           </a>
