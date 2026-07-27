@@ -3,17 +3,74 @@
 import { useEffect, useMemo, useState } from 'react';
 
 const MENU_IMAGE = '/homemade-markets-food-page.png?v=20260727-7';
+const MENU_ASPECT = 1660 / 910;
 const FACEBOOK_URL = 'https://www.facebook.com/HomemadeMarkets';
 const CART_KEY = 'homemade-markets-menu-cart-v2';
 
 const MENU_ITEMS = [
-  { id: 'cheese', name: 'Cheese Pizza', price: 18, unit: 'pizza', hotspot: 'poster-add-cheese' },
-  { id: 'pepperoni', name: 'Pepperoni Pizza', price: 20, unit: 'pizza', hotspot: 'poster-add-pepperoni' },
-  { id: 'bbq-chicken', name: 'BBQ Chicken Pizza', price: 22, unit: 'pizza', hotspot: 'poster-add-bbq' },
-  { id: 'veggie', name: 'Veggie Pizza', price: 25, unit: 'pizza', hotspot: 'poster-add-veggie' },
-  { id: 'jambalaya', name: 'Homemade Jambalaya', price: 10, unit: 'serving', hotspot: 'poster-add-jambalaya' },
-  { id: 'banana-bread', name: 'Chocolate Chip Banana Bread', price: 8, unit: 'loaf', hotspot: 'poster-add-banana' },
-  { id: 'tiramisu', name: 'Classic Tiramisu', price: 7, unit: 'cup', hotspot: 'poster-add-tiramisu' },
+  {
+    id: 'cheese',
+    name: 'Cheese Pizza',
+    price: 18,
+    unit: 'pizza',
+    hotspot: 'poster-add-cheese',
+    viewerHotspot: 'poster-view-cheese',
+    preview: { x: 41.2, y: 18.2, width: 12.6, height: 23.2, shape: 'round' },
+  },
+  {
+    id: 'pepperoni',
+    name: 'Pepperoni Pizza',
+    price: 20,
+    unit: 'pizza',
+    hotspot: 'poster-add-pepperoni',
+    viewerHotspot: 'poster-view-pepperoni',
+    preview: { x: 55.1, y: 18.1, width: 12.6, height: 23.3, shape: 'round' },
+  },
+  {
+    id: 'bbq-chicken',
+    name: 'BBQ Chicken Pizza',
+    price: 22,
+    unit: 'pizza',
+    hotspot: 'poster-add-bbq',
+    viewerHotspot: 'poster-view-bbq',
+    preview: { x: 69.0, y: 18.1, width: 12.8, height: 23.3, shape: 'round' },
+  },
+  {
+    id: 'veggie',
+    name: 'Veggie Pizza',
+    price: 25,
+    unit: 'pizza',
+    hotspot: 'poster-add-veggie',
+    viewerHotspot: 'poster-view-veggie',
+    preview: { x: 82.4, y: 18.1, width: 12.7, height: 23.4, shape: 'round' },
+  },
+  {
+    id: 'jambalaya',
+    name: 'Homemade Jambalaya',
+    price: 10,
+    unit: 'serving',
+    hotspot: 'poster-add-jambalaya',
+    viewerHotspot: 'poster-view-jambalaya',
+    preview: { x: 41.4, y: 62.3, width: 17.4, height: 21.4, shape: 'plate' },
+  },
+  {
+    id: 'banana-bread',
+    name: 'Chocolate Chip Banana Bread',
+    price: 8,
+    unit: 'loaf',
+    hotspot: 'poster-add-banana',
+    viewerHotspot: 'poster-view-banana',
+    preview: { x: 60.9, y: 62.0, width: 17.2, height: 21.7, shape: 'plate' },
+  },
+  {
+    id: 'tiramisu',
+    name: 'Classic Tiramisu',
+    price: 7,
+    unit: 'cup',
+    hotspot: 'poster-add-tiramisu',
+    viewerHotspot: 'poster-view-tiramisu',
+    preview: { x: 79.0, y: 62.0, width: 17.1, height: 21.7, shape: 'plate' },
+  },
 ];
 
 function formatMoney(value) {
@@ -23,9 +80,24 @@ function formatMoney(value) {
   }).format(value);
 }
 
+function foodPreviewStyle(item) {
+  const { x, y, width, height } = item.preview;
+  const positionX = (x / (100 - width)) * 100;
+  const positionY = (y / (100 - height)) * 100;
+  const aspectRatio = (width * MENU_ASPECT) / height;
+
+  return {
+    '--food-image': `url("${MENU_IMAGE}")`,
+    '--food-size': `${100 / width}% auto`,
+    '--food-position': `${positionX}% ${positionY}%`,
+    '--food-aspect': `${aspectRatio}`,
+  };
+}
+
 export default function FunctionalMenu() {
   const [quantities, setQuantities] = useState({});
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [previewItem, setPreviewItem] = useState(null);
   const [notice, setNotice] = useState('');
   const [customer, setCustomer] = useState({
     name: '',
@@ -56,13 +128,23 @@ export default function FunctionalMenu() {
   }, [notice]);
 
   useEffect(() => {
-    if (!drawerOpen) return undefined;
+    if (!drawerOpen && !previewItem) return undefined;
+
     const closeOnEscape = (event) => {
-      if (event.key === 'Escape') setDrawerOpen(false);
+      if (event.key !== 'Escape') return;
+      if (previewItem) setPreviewItem(null);
+      else setDrawerOpen(false);
     };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', closeOnEscape);
-    return () => window.removeEventListener('keydown', closeOnEscape);
-  }, [drawerOpen]);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', closeOnEscape);
+    };
+  }, [drawerOpen, previewItem]);
 
   const selectedItems = useMemo(
     () => MENU_ITEMS
@@ -98,6 +180,19 @@ export default function FunctionalMenu() {
       else next[id] = nextQuantity;
       return next;
     });
+  }
+
+  function moveFoodPreview(event) {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const horizontal = ((event.clientX - bounds.left) / bounds.width) - 0.5;
+    const vertical = ((event.clientY - bounds.top) / bounds.height) - 0.5;
+    event.currentTarget.style.setProperty('--rotate-y', `${horizontal * 24}deg`);
+    event.currentTarget.style.setProperty('--rotate-x', `${vertical * -18}deg`);
+  }
+
+  function resetFoodPreview(event) {
+    event.currentTarget.style.setProperty('--rotate-y', '0deg');
+    event.currentTarget.style.setProperty('--rotate-x', '0deg');
   }
 
   function orderSummary() {
@@ -167,6 +262,19 @@ export default function FunctionalMenu() {
 
         {MENU_ITEMS.map((item) => (
           <button
+            key={`${item.id}-preview`}
+            type="button"
+            className={`poster-hotspot poster-view-button ${item.viewerHotspot}`}
+            onClick={() => setPreviewItem(item)}
+            aria-label={`Open interactive 3D view of ${item.name}`}
+            title={`View ${item.name} in 3D`}
+          >
+            <span className="poster-sr-only">View {item.name} in 3D</span>
+          </button>
+        ))}
+
+        {MENU_ITEMS.map((item) => (
+          <button
             key={item.id}
             type="button"
             className={`poster-hotspot poster-add-button ${item.hotspot}`}
@@ -183,6 +291,41 @@ export default function FunctionalMenu() {
       </section>
 
       {notice && <div className="poster-menu-notice" role="status">{notice}</div>}
+
+      {previewItem && (
+        <div
+          className="poster-3d-overlay"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setPreviewItem(null);
+          }}
+        >
+          <section className="poster-3d-dialog" role="dialog" aria-modal="true" aria-labelledby="poster-3d-title">
+            <button className="poster-3d-close" type="button" onClick={() => setPreviewItem(null)} aria-label="Close 3D food view">×</button>
+            <div className="poster-3d-copy">
+              <span>Interactive 3D View</span>
+              <h2 id="poster-3d-title">{previewItem.name}</h2>
+              <p>Move your pointer across the food to rotate it.</p>
+            </div>
+            <div
+              className="poster-3d-stage"
+              onPointerMove={moveFoodPreview}
+              onPointerLeave={resetFoodPreview}
+            >
+              <div
+                className={`poster-3d-food poster-3d-food-${previewItem.preview.shape}`}
+                style={foodPreviewStyle(previewItem)}
+                role="img"
+                aria-label={`Interactive three-dimensional view of ${previewItem.name}`}
+              />
+              <div className="poster-3d-floor-shadow" aria-hidden="true" />
+            </div>
+            <button className="poster-3d-add" type="button" onClick={() => addItem(previewItem)}>
+              Add {previewItem.name} — {formatMoney(previewItem.price)}
+            </button>
+          </section>
+        </div>
+      )}
 
       {drawerOpen && (
         <div
