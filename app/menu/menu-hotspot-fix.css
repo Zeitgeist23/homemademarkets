@@ -28,19 +28,23 @@
   box-shadow: none !important;
 }
 
-/* Remove the baked-in See Our Menu button while preserving the surrounding cream header. */
+/* Cover only the original See Our Menu artwork in its actual button position. */
 .poster-menu-stage::before {
   content: "";
   position: absolute;
-  left: 70.15%;
-  top: 0;
+  left: 68.55%;
+  top: 1.95%;
   z-index: 3;
-  width: 12.35%;
-  height: 5.5%;
+  width: 12.3%;
+  height: 7.4%;
   pointer-events: none;
-  background-image: url("data:image/webp;base64,UklGRgQBAABXRUJQVlA4IPgAAACwCACdASrXADMAPikUiUOhoSEQVAAYAoS0g4NR+AgBZ/VvsBMITnoP9ehrZy0+ytlkC96AucNtpsIjfNG6MdBYKE2NJGf8nR1UkQkSdgAA/v+sN1//8Buvi1y/9RIJIx/5sB+dyRQAy9eLPwed9lO3TmMMftU+qJ2fZth8KnSx6zNZOh5MN96DpMxO1O2HE6FpcXnlDq1TNq7WtO5z82yzZclM3oupzWBIjbAhG8UG2VyGImzm6CJQbiM+6+x3PAiXXMLSWmNmu4QCsLRFekdhbIMPokpYGKRpNQZCuSaWGRHE4BdNln4SQAu2L3QoA5nJxmHP9gAAAA==");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background: linear-gradient(
+    180deg,
+    #fbe9d3 0%,
+    #fbe7cf 52%,
+    #fbe9d4 100%
+  );
+  box-shadow: 0 0 7px 3px rgba(251, 232, 209, 0.96);
 }
 
 .poster-facebook {
