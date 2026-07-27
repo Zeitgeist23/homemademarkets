@@ -39,7 +39,7 @@
 /* Match both menu-page header buttons to the two hero-page buttons. */
 .poster-find-market,
 .poster-facebook {
-  top: 2.7% !important;
+  top: calc(2.7% + 8px) !important;
   width: 11.6% !important;
   height: 5% !important;
   z-index: 6 !important;
