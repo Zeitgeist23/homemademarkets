@@ -9,9 +9,9 @@ const hotspotStyle = {
 
 const topButtonStyle = {
   position: 'absolute',
-  top: '2.3%',
+  top: '2.7%',
   width: '11.6%',
-  height: '5.8%',
+  height: '5.0%',
   zIndex: 50,
   display: 'flex',
   alignItems: 'center',
