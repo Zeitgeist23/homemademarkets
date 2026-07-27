@@ -1,109 +1,68 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
-const POSTER_IMAGE = '/homemade-markets-food-page.png?v=20260727-6';
+const MENU_IMAGE = '/homemade-markets-food-page.png?v=20260727-7';
 const FACEBOOK_URL = 'https://www.facebook.com/HomemadeMarkets';
+const CART_KEY = 'homemade-markets-menu-cart-v2';
 
 const MENU_ITEMS = [
-  {
-    id: 'classic-cheese',
-    group: 'pizza',
-    name: 'Classic Cheese Pizza',
-    description: 'A golden, wood-fired crust topped with tomato sauce, mozzarella and parmesan.',
-    price: 18,
-    unit: 'pizza',
-    photoClass: 'photo-classic-cheese',
-  },
-  {
-    id: 'pepperoni',
-    group: 'pizza',
-    name: 'Pepperoni Pizza',
-    description: 'A classic favorite with tomato sauce, mozzarella and pepperoni.',
-    price: 20,
-    unit: 'pizza',
-    photoClass: 'photo-pepperoni',
-  },
-  {
-    id: 'bbq-chicken',
-    group: 'pizza',
-    name: 'BBQ Chicken Pizza',
-    description: 'Wood-fired crust with BBQ sauce, mozzarella, seasoned chicken and red onion.',
-    price: 22,
-    unit: 'pizza',
-    photoClass: 'photo-bbq-chicken',
-  },
-  {
-    id: 'veggie',
-    group: 'pizza',
-    name: 'Veggie Pizza',
-    description: 'Tomato sauce, mozzarella, spinach, tomato, bell pepper and red onion.',
-    price: 25,
-    unit: 'pizza',
-    photoClass: 'photo-veggie',
-  },
-  {
-    id: 'jambalaya',
-    group: 'favorite',
-    name: 'Homemade Jambalaya',
-    description: 'Classic Southern flavor, slow-simmered with savory spices, vegetables and tender cuts of meat.',
-    price: 10,
-    unit: 'serving',
-    photoClass: 'photo-jambalaya',
-  },
-  {
-    id: 'banana-bread',
-    group: 'favorite',
-    name: 'Chocolate Chip Banana Bread',
-    description: 'Moist, rich and baked fresh with ripe bananas and chocolate chips.',
-    price: 8,
-    unit: 'loaf',
-    photoClass: 'photo-banana-bread',
-  },
-  {
-    id: 'tiramisu',
-    group: 'favorite',
-    name: 'Classic Tiramisu',
-    description: 'Layers of espresso-soaked ladyfingers, whipped mascarpone cream and cocoa.',
-    price: 7,
-    unit: 'cup',
-    photoClass: 'photo-tiramisu',
-  },
+  { id: 'cheese', name: 'Cheese Pizza', price: 18, unit: 'pizza', hotspot: 'poster-add-cheese' },
+  { id: 'pepperoni', name: 'Pepperoni Pizza', price: 20, unit: 'pizza', hotspot: 'poster-add-pepperoni' },
+  { id: 'bbq-chicken', name: 'BBQ Chicken Pizza', price: 22, unit: 'pizza', hotspot: 'poster-add-bbq' },
+  { id: 'veggie', name: 'Veggie Pizza', price: 25, unit: 'pizza', hotspot: 'poster-add-veggie' },
+  { id: 'jambalaya', name: 'Homemade Jambalaya', price: 10, unit: 'serving', hotspot: 'poster-add-jambalaya' },
+  { id: 'banana-bread', name: 'Chocolate Chip Banana Bread', price: 8, unit: 'loaf', hotspot: 'poster-add-banana' },
+  { id: 'tiramisu', name: 'Classic Tiramisu', price: 7, unit: 'cup', hotspot: 'poster-add-tiramisu' },
 ];
 
 function formatMoney(value) {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-    minimumFractionDigits: 2,
   }).format(value);
-}
-
-function MenuItemCard({ item, addItem }) {
-  return (
-    <article className={`real-menu-card real-menu-card-${item.group}`}>
-      <div className="real-menu-card-copy">
-        <h3>{item.name}</h3>
-        <p>{item.description}</p>
-        <div className="real-menu-card-bottom">
-          <strong>{formatMoney(item.price)}{item.group === 'favorite' ? ` per ${item.unit}` : ''}</strong>
-          <button type="button" onClick={() => addItem(item.id)}>
-            Add to order
-          </button>
-        </div>
-      </div>
-
-      <div className={`real-menu-card-photo ${item.group === 'pizza' ? 'poster-crop-left' : 'poster-crop-right'} ${item.photoClass}`} aria-hidden="true">
-        <img src={POSTER_IMAGE} alt="" />
-      </div>
-    </article>
-  );
 }
 
 export default function FunctionalMenu() {
   const [quantities, setQuantities] = useState({});
-  const [customer, setCustomer] = useState({ name: '', contact: '', pickup: '', notes: '' });
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const [notice, setNotice] = useState('');
+  const [customer, setCustomer] = useState({
+    name: '',
+    contact: '',
+    pickup: '',
+    notes: '',
+  });
+
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(window.localStorage.getItem(CART_KEY) || '{}');
+      if (saved && typeof saved === 'object' && !Array.isArray(saved)) {
+        setQuantities(saved);
+      }
+    } catch {
+      setQuantities({});
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(CART_KEY, JSON.stringify(quantities));
+  }, [quantities]);
+
+  useEffect(() => {
+    if (!notice) return undefined;
+    const timer = window.setTimeout(() => setNotice(''), 1800);
+    return () => window.clearTimeout(timer);
+  }, [notice]);
+
+  useEffect(() => {
+    if (!drawerOpen) return undefined;
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') setDrawerOpen(false);
+    };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, [drawerOpen]);
 
   const selectedItems = useMemo(
     () => MENU_ITEMS
@@ -122,29 +81,34 @@ export default function FunctionalMenu() {
     [selectedItems],
   );
 
-  function addItem(id) {
-    setQuantities((current) => ({ ...current, [id]: (current[id] || 0) + 1 }));
-    setNotice('Item added to your order.');
+  function addItem(item) {
+    setQuantities((current) => ({
+      ...current,
+      [item.id]: (current[item.id] || 0) + 1,
+    }));
+    setNotice(`${item.name} added`);
+    setDrawerOpen(true);
   }
 
   function changeQuantity(id, change) {
     setQuantities((current) => {
       const nextQuantity = Math.max(0, (current[id] || 0) + change);
-      const next = { ...current, [id]: nextQuantity };
+      const next = { ...current };
       if (nextQuantity === 0) delete next[id];
+      else next[id] = nextQuantity;
       return next;
     });
   }
 
   function orderSummary() {
-    const itemLines = selectedItems.map(
+    const lines = selectedItems.map(
       (item) => `${item.quantity} x ${item.name} — ${formatMoney(item.quantity * item.price)}`,
     );
 
     return [
       'HOMEMADE MARKETS ORDER REQUEST',
       '',
-      ...itemLines,
+      ...lines,
       '',
       `Estimated subtotal: ${formatMoney(subtotal)}`,
       customer.name ? `Name: ${customer.name}` : '',
@@ -152,155 +116,148 @@ export default function FunctionalMenu() {
       customer.pickup ? `Requested pickup date/time: ${customer.pickup}` : '',
       customer.notes ? `Notes: ${customer.notes}` : '',
       '',
-      'This request is not confirmed until Homemade Markets replies with availability and pickup details.',
+      'This request is not confirmed until Homemade Markets replies with availability, final price, and pickup details.',
     ].filter(Boolean).join('\n');
   }
 
   async function copyOrder() {
     if (!selectedItems.length) {
-      setNotice('Add at least one item before sending an order request.');
+      setNotice('Add at least one item first.');
       return false;
     }
 
     const summary = orderSummary();
-
     try {
       await navigator.clipboard.writeText(summary);
-      setNotice('Order request copied. Paste it into Facebook Messenger.');
+      setNotice('Order request copied.');
       return true;
     } catch {
       window.prompt('Copy this order request:', summary);
-      setNotice('Copy the order request shown, then send it through Facebook.');
       return true;
     }
   }
 
-  async function openFacebookOrder() {
-    if (!selectedItems.length) {
-      setNotice('Add at least one item before sending an order request.');
-      return;
-    }
-
-    window.open(FACEBOOK_URL, '_blank', 'noopener,noreferrer');
-    await copyOrder();
+  async function copyAndOpenFacebook() {
+    const copied = await copyOrder();
+    if (copied) window.open(FACEBOOK_URL, '_blank', 'noopener,noreferrer');
   }
 
-  const pizzaItems = MENU_ITEMS.filter((item) => item.group === 'pizza');
-  const favoriteItems = MENU_ITEMS.filter((item) => item.group === 'favorite');
-
   return (
-    <main className="functional-menu-page">
-      <header className="functional-menu-brand">
-        <a href="/" className="functional-menu-brand-crop" aria-label="Return to the Homemade Markets landing page">
-          <img src={POSTER_IMAGE} alt="" aria-hidden="true" />
-          <span className="real-menu-sr-only">Homemade Markets home</span>
-        </a>
-        <h1 className="real-menu-sr-only">Homemade Markets Menu</h1>
-      </header>
+    <main className="poster-menu-page">
+      <section className="poster-menu-stage" aria-label="Interactive Homemade Markets menu">
+        <img
+          className="poster-menu-image"
+          src={MENU_IMAGE}
+          alt="Homemade Markets menu with cheese, pepperoni, BBQ chicken and veggie pizzas, jambalaya, chocolate chip banana bread, and tiramisu"
+        />
 
-      <div className="functional-menu-grid">
-        <section className="functional-menu-column functional-menu-pizzas" aria-labelledby="pizza-menu-heading">
-          <div className="functional-menu-heading">
-            <h2 id="pizza-menu-heading">Wood-Fired Pizzas</h2>
-            <p>Handcrafted · Small-batch · Market-made</p>
-          </div>
-          <div className="functional-menu-card-list">
-            {pizzaItems.map((item) => <MenuItemCard key={item.id} item={item} addItem={addItem} />)}
-          </div>
-        </section>
+        <a className="poster-hotspot poster-about" href="/#about" aria-label="About Homemade Markets" />
+        <a className="poster-hotspot poster-market-dates" href="/#market-dates" aria-label="View market dates" />
+        <a className="poster-hotspot poster-catering" href="/#catering" aria-label="Catering information" />
+        <button className="poster-hotspot poster-shop" type="button" onClick={() => setDrawerOpen(true)} aria-label={`Open order cart with ${itemCount} items`} />
+        <a className="poster-hotspot poster-logo-home" href="/" aria-label="Return to the Homemade Markets landing page" />
+        <a className="poster-hotspot poster-see-menu" href="#menu-top" aria-label="See the Homemade Markets menu" />
+        <a className="poster-hotspot poster-find-market" href="/#market-dates" aria-label="Find Homemade Markets at a market" />
 
-        <section className="functional-menu-column functional-menu-favorites" aria-labelledby="favorites-menu-heading">
-          <div className="functional-menu-heading">
-            <h2 id="favorites-menu-heading">Market Favorites</h2>
-            <p>Homemade · Comforting · Crowd-approved</p>
-          </div>
-          <div className="functional-menu-card-list">
-            {favoriteItems.map((item) => <MenuItemCard key={item.id} item={item} addItem={addItem} />)}
-          </div>
-        </section>
-      </div>
-
-      <section className="functional-order-panel" id="order" aria-labelledby="order-heading">
-        <div className="functional-order-heading">
-          <div>
-            <span>Order Request</span>
-            <h2 id="order-heading">Build Your Homemade Markets Order</h2>
-            <p>Select items above, choose quantities, then copy the request and send it through Facebook for confirmation.</p>
-          </div>
-          <div className="functional-order-count">
-            <strong>{itemCount}</strong>
-            <span>{itemCount === 1 ? 'item' : 'items'}</span>
-          </div>
-        </div>
-
-        {selectedItems.length ? (
-          <div className="functional-order-layout">
-            <div className="functional-order-items">
-              {selectedItems.map((item) => (
-                <article key={item.id}>
-                  <div>
-                    <strong>{item.name}</strong>
-                    <span>{formatMoney(item.price)} each</span>
-                  </div>
-                  <div className="functional-quantity-control" aria-label={`Quantity for ${item.name}`}>
-                    <button type="button" onClick={() => changeQuantity(item.id, -1)} aria-label={`Remove one ${item.name}`}>−</button>
-                    <b>{item.quantity}</b>
-                    <button type="button" onClick={() => changeQuantity(item.id, 1)} aria-label={`Add one ${item.name}`}>+</button>
-                  </div>
-                  <em>{formatMoney(item.price * item.quantity)}</em>
-                </article>
-              ))}
-              <div className="functional-order-total">
-                <span>Estimated subtotal</span>
-                <strong>{formatMoney(subtotal)}</strong>
-              </div>
-            </div>
-
-            <div className="functional-customer-form">
-              <label>
-                <span>Name</span>
-                <input value={customer.name} onChange={(event) => setCustomer({ ...customer, name: event.target.value })} />
-              </label>
-              <label>
-                <span>Phone or email</span>
-                <input value={customer.contact} onChange={(event) => setCustomer({ ...customer, contact: event.target.value })} />
-              </label>
-              <label>
-                <span>Requested pickup date/time</span>
-                <input value={customer.pickup} onChange={(event) => setCustomer({ ...customer, pickup: event.target.value })} placeholder="Example: Saturday at 11:30 AM" />
-              </label>
-              <label>
-                <span>Notes</span>
-                <textarea rows="4" value={customer.notes} onChange={(event) => setCustomer({ ...customer, notes: event.target.value })} />
-              </label>
-            </div>
-          </div>
-        ) : (
-          <div className="functional-order-empty">
-            <strong>Your order is empty.</strong>
-            <p>Use the “Add to order” buttons on any menu item above.</p>
-          </div>
-        )}
-
-        <p className="functional-order-disclaimer">
-          Prices and availability require confirmation. Sending a request does not create a confirmed order or guaranteed pickup time.
-        </p>
-
-        <div className="functional-order-actions">
-          <button type="button" className="functional-order-primary" onClick={openFacebookOrder} disabled={!selectedItems.length}>
-            Copy Order &amp; Open Facebook
+        {MENU_ITEMS.map((item) => (
+          <button
+            key={item.id}
+            type="button"
+            className={`poster-hotspot poster-add-button ${item.hotspot}`}
+            onClick={() => addItem(item)}
+            aria-label={`Add ${item.name} for ${formatMoney(item.price)} to the order`}
+            title={`Add ${item.name}`}
+          >
+            <span className="poster-sr-only">Add {item.name}</span>
           </button>
-          <button type="button" onClick={copyOrder} disabled={!selectedItems.length}>Copy Order Request</button>
-          <button type="button" onClick={() => setQuantities({})} disabled={!selectedItems.length}>Clear Order</button>
-        </div>
+        ))}
 
-        <div className="functional-order-notice" aria-live="polite">{notice}</div>
+        <a className="poster-hotspot poster-facebook" href={FACEBOOK_URL} target="_blank" rel="noreferrer" aria-label="Open Homemade Markets on Facebook" />
+        <span id="menu-top" className="poster-menu-anchor" />
       </section>
 
-      <footer className="functional-menu-footer">
-        <a href={FACEBOOK_URL} target="_blank" rel="noreferrer">Find Homemade Markets on Facebook</a>
-        <a href="/">Return to the landing page</a>
-      </footer>
+      {notice && <div className="poster-menu-notice" role="status">{notice}</div>}
+
+      {drawerOpen && (
+        <div
+          className="poster-cart-overlay"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setDrawerOpen(false);
+          }}
+        >
+          <aside className="poster-cart-drawer" role="dialog" aria-modal="true" aria-labelledby="poster-cart-title">
+            <header className="poster-cart-header">
+              <div>
+                <span>Homemade Markets</span>
+                <h2 id="poster-cart-title">Your Order</h2>
+              </div>
+              <button type="button" onClick={() => setDrawerOpen(false)} aria-label="Close order cart">×</button>
+            </header>
+
+            {!selectedItems.length ? (
+              <div className="poster-cart-empty">
+                <strong>Your order is empty.</strong>
+                <p>Close this panel and click one of the existing + Add buttons on the menu.</p>
+              </div>
+            ) : (
+              <>
+                <div className="poster-cart-items">
+                  {selectedItems.map((item) => (
+                    <article key={item.id}>
+                      <div>
+                        <strong>{item.name}</strong>
+                        <span>{formatMoney(item.price)} per {item.unit}</span>
+                      </div>
+                      <div className="poster-quantity-control">
+                        <button type="button" onClick={() => changeQuantity(item.id, -1)} aria-label={`Remove one ${item.name}`}>−</button>
+                        <b>{item.quantity}</b>
+                        <button type="button" onClick={() => changeQuantity(item.id, 1)} aria-label={`Add one ${item.name}`}>+</button>
+                      </div>
+                      <em>{formatMoney(item.quantity * item.price)}</em>
+                    </article>
+                  ))}
+                </div>
+
+                <div className="poster-cart-total">
+                  <span>Estimated subtotal</span>
+                  <strong>{formatMoney(subtotal)}</strong>
+                </div>
+
+                <div className="poster-customer-fields">
+                  <label>
+                    <span>Name</span>
+                    <input value={customer.name} onChange={(event) => setCustomer({ ...customer, name: event.target.value })} />
+                  </label>
+                  <label>
+                    <span>Phone or email</span>
+                    <input value={customer.contact} onChange={(event) => setCustomer({ ...customer, contact: event.target.value })} />
+                  </label>
+                  <label>
+                    <span>Requested pickup date/time</span>
+                    <input value={customer.pickup} onChange={(event) => setCustomer({ ...customer, pickup: event.target.value })} placeholder="Example: Saturday at 11:30 AM" />
+                  </label>
+                  <label>
+                    <span>Notes</span>
+                    <textarea rows="3" value={customer.notes} onChange={(event) => setCustomer({ ...customer, notes: event.target.value })} />
+                  </label>
+                </div>
+
+                <p className="poster-cart-disclaimer">
+                  This is an order request. Availability, final price, pickup time, and the order itself must be confirmed by Homemade Markets.
+                </p>
+
+                <div className="poster-cart-actions">
+                  <button type="button" className="poster-cart-primary" onClick={copyAndOpenFacebook}>Copy Order &amp; Open Facebook</button>
+                  <button type="button" onClick={copyOrder}>Copy Order Request</button>
+                  <button type="button" className="poster-cart-clear" onClick={() => setQuantities({})}>Clear Order</button>
+                  <button type="button" onClick={() => setDrawerOpen(false)}>Continue Shopping</button>
+                </div>
+              </>
+            )}
+          </aside>
+        </div>
+      )}
     </main>
   );
 }
