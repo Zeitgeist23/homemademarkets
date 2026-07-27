@@ -13,10 +13,11 @@
   box-shadow: none !important;
 }
 
-.poster-see-menu:hover,
-.poster-see-menu:focus,
-.poster-see-menu:focus-visible,
-.poster-see-menu:active,
+.poster-see-menu {
+  display: none !important;
+  pointer-events: none !important;
+}
+
 .poster-find-market:hover,
 .poster-find-market:focus,
 .poster-find-market:focus-visible,
@@ -28,8 +29,43 @@
 }
 
 .poster-facebook {
-  display: none !important;
-  pointer-events: none !important;
+  left: 68.7% !important;
+  top: 2.1% !important;
+  width: 12% !important;
+  height: 7.1% !important;
+  z-index: 6 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 0 !important;
+  border-radius: 6px;
+  background: #8f1014 !important;
+  color: #fff !important;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(8px, 1vw, 17px);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+.poster-facebook::before {
+  content: "CONTACT US";
+}
+
+.poster-facebook:hover,
+.poster-facebook:focus,
+.poster-facebook:focus-visible,
+.poster-facebook:active {
+  border-color: transparent !important;
+  background: #8f1014 !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .poster-place-order {
