@@ -17,12 +17,12 @@ const topButtonStyle = {
   alignItems: 'center',
   justifyContent: 'center',
   boxSizing: 'border-box',
-  background: 'linear-gradient(180deg, #901613 0%, #88110f 45%, #830b0b 100%)',
+  background: 'linear-gradient(180deg, #7f0b0d 0%, #760507 48%, #6d0002 100%)',
   color: '#fff8f2',
   textDecoration: 'none',
-  border: '1px solid rgba(105, 0, 0, 0.48)',
+  border: '1px solid rgba(84, 0, 0, 0.62)',
   borderRadius: '6px',
-  boxShadow: '0 1px 3px rgba(75, 0, 0, 0.28)',
+  boxShadow: '0 1px 3px rgba(60, 0, 0, 0.34)',
   fontFamily: 'Arial, sans-serif',
   fontSize: 'clamp(8px, 0.9vw, 16px)',
   fontWeight: 700,
@@ -87,6 +87,18 @@ export default function HomePage() {
             }}
           />
 
+          <a aria-label="Find Us at a Market" href="#market-dates" style={{ ...topButtonStyle, left: '69.0%' }}>
+            FIND US AT A MARKET
+          </a>
+          <a
+            aria-label="Contact Us"
+            href="https://www.facebook.com/HomemadeMarkets"
+            target="_blank"
+            rel="noreferrer"
+            style={{ ...topButtonStyle, left: '83.5%' }}
+          >
+            CONTACT US
+          </a>
           <a aria-label="Order Now" href="#order" style={{ ...hotspotStyle, left: '10.9%', top: '80.0%', width: '11.6%', height: '5.8%' }} />
         </div>
       </section>
