@@ -1,6 +1,7 @@
 import FunctionalMenu from '../../components/FunctionalMenu';
 import './menu.css';
 import './menu-hotspot-fix.css';
+import './menu-bottom-spacing.css';
 
 export const metadata = {
   title: 'Menu | Homemade Markets',
