@@ -125,7 +125,7 @@
 }
 
 .poster-food-detail-image {
-  width: min(100%, 560px);
+  width: min(100%, 280px);
   aspect-ratio: var(--food-aspect);
   margin: 0 auto;
   border: 1px solid rgba(143, 16, 20, 0.2);
@@ -225,7 +225,7 @@
   }
 
   .poster-food-detail-image {
-    width: min(100%, 500px);
+    width: min(100%, 250px);
   }
 
   .poster-food-ingredients {
