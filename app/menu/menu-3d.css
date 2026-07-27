@@ -6,7 +6,7 @@
   background: transparent !important;
   box-shadow: none !important;
   color: transparent !important;
-  cursor: zoom-in !important;
+  cursor: pointer !important;
   pointer-events: auto !important;
   touch-action: manipulation;
 }
@@ -104,7 +104,7 @@
 }
 
 .poster-3d-copy {
-  padding: 0 48px;
+  padding: 0 48px 20px;
   text-align: center;
 }
 
@@ -118,134 +118,68 @@
 }
 
 .poster-3d-copy h2 {
-  margin: 8px 0 6px;
+  margin: 8px 0 0;
   font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(28px, 4vw, 44px);
   line-height: 1.05;
 }
 
-.poster-3d-copy p {
-  margin: 0;
-  color: #70594d;
-  font-size: 14px;
-  line-height: 1.45;
-}
-
-.poster-3d-stage {
-  --rotate-x: 48deg;
-  --rotate-y: -8deg;
-  --rotate-z: -4deg;
-  position: relative;
-  display: grid;
-  min-height: clamp(330px, 55vw, 520px);
-  place-items: center;
-  perspective: 1250px;
-  perspective-origin: 50% 42%;
-  cursor: grab;
-}
-
-.poster-3d-stage:active {
-  cursor: grabbing;
-}
-
-.poster-3d-object {
-  position: relative;
-  z-index: 2;
-  width: min(70vw, 490px);
+.poster-food-detail-image {
+  width: min(100%, 560px);
   aspect-ratio: var(--food-aspect);
-  transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) rotateZ(var(--rotate-z)) translateZ(34px);
-  transform-style: preserve-3d;
-  transition: transform 120ms ease-out, filter 180ms ease;
-  filter: drop-shadow(0 30px 24px rgba(53, 22, 7, 0.32));
-  will-change: transform;
-}
-
-.poster-3d-stage:hover .poster-3d-object {
-  filter: drop-shadow(0 38px 28px rgba(53, 22, 7, 0.38));
-}
-
-.poster-3d-edge,
-.poster-3d-food,
-.poster-3d-highlight {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-}
-
-.poster-3d-edge {
-  border: 1px solid rgba(67, 29, 11, 0.28);
-  background: linear-gradient(135deg, #b96224 0%, #7e3516 46%, #4d1d0e 100%);
-  box-shadow: inset 0 -10px 18px rgba(58, 20, 7, 0.38), inset 0 4px 8px rgba(255, 196, 118, 0.18);
-}
-
-.poster-3d-object-plate .poster-3d-edge {
-  border-color: rgba(110, 78, 54, 0.3);
-  background: linear-gradient(135deg, #f7ead9 0%, #d6bda2 52%, #9c7a61 100%);
-  box-shadow: inset 0 -12px 18px rgba(88, 56, 35, 0.3), inset 0 5px 9px rgba(255, 255, 255, 0.52);
-}
-
-.poster-3d-edge:nth-of-type(1) { transform: translateZ(-2px) translateY(1px); }
-.poster-3d-edge:nth-of-type(2) { transform: translateZ(-4px) translateY(2px); }
-.poster-3d-edge:nth-of-type(3) { transform: translateZ(-6px) translateY(3px); }
-.poster-3d-edge:nth-of-type(4) { transform: translateZ(-8px) translateY(4px); }
-.poster-3d-edge:nth-of-type(5) { transform: translateZ(-10px) translateY(5px); }
-.poster-3d-edge:nth-of-type(6) { transform: translateZ(-12px) translateY(6px); }
-.poster-3d-edge:nth-of-type(7) { transform: translateZ(-14px) translateY(7px); }
-.poster-3d-edge:nth-of-type(8) { transform: translateZ(-16px) translateY(8px); }
-.poster-3d-edge:nth-of-type(9) { transform: translateZ(-18px) translateY(9px); }
-.poster-3d-edge:nth-of-type(10) { transform: translateZ(-20px) translateY(10px); }
-.poster-3d-edge:nth-of-type(11) { transform: translateZ(-22px) translateY(11px); }
-.poster-3d-edge:nth-of-type(12) { transform: translateZ(-24px) translateY(12px); }
-.poster-3d-edge:nth-of-type(13) { transform: translateZ(-26px) translateY(13px); }
-.poster-3d-edge:nth-of-type(14) { transform: translateZ(-28px) translateY(14px); }
-
-.poster-3d-food {
-  z-index: 3;
+  margin: 0 auto;
+  border: 1px solid rgba(143, 16, 20, 0.2);
   background-image: var(--food-image);
   background-position: var(--food-position);
   background-repeat: no-repeat;
   background-size: var(--food-size);
-  border: 1px solid rgba(143, 16, 20, 0.2);
-  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.13), inset 0 -14px 24px rgba(55, 21, 8, 0.16);
-  transform: translateZ(8px);
+  box-shadow: 0 18px 38px rgba(61, 26, 10, 0.2);
 }
 
-.poster-3d-highlight {
-  z-index: 4;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.38), transparent 34%),
-    linear-gradient(120deg, rgba(255, 255, 255, 0.12), transparent 42%, rgba(55, 18, 7, 0.12));
-  mix-blend-mode: screen;
-  transform: translateZ(9px);
-}
-
-.poster-3d-object-round,
-.poster-3d-object-round .poster-3d-edge,
-.poster-3d-object-round .poster-3d-food,
-.poster-3d-object-round .poster-3d-highlight {
+.poster-food-detail-image-round {
   border-radius: 50%;
 }
 
-.poster-3d-object-plate,
-.poster-3d-object-plate .poster-3d-edge,
-.poster-3d-object-plate .poster-3d-food,
-.poster-3d-object-plate .poster-3d-highlight {
-  border-radius: 34px;
+.poster-food-detail-image-plate {
+  border-radius: 24px;
 }
 
-.poster-3d-floor-shadow {
-  position: absolute;
-  left: 50%;
-  bottom: 7%;
-  z-index: 1;
-  width: min(62vw, 440px);
-  height: 66px;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(43, 22, 15, 0.42) 0%, rgba(43, 22, 15, 0.13) 56%, transparent 78%);
-  filter: blur(10px);
+.poster-food-ingredients {
+  width: min(100%, 620px);
+  margin: 26px auto 24px;
+  padding: 22px 24px;
+  box-sizing: border-box;
+  border: 1px solid #d6bca4;
+  border-radius: 12px;
+  background: rgba(255, 250, 241, 0.78);
+}
+
+.poster-food-ingredients h3 {
+  margin: 0 0 14px;
+  color: #6f1118;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 25px;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.poster-food-ingredients ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px 28px;
+  margin: 0;
+  padding-left: 22px;
+}
+
+.poster-food-ingredients li {
+  color: #4e382d;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.poster-food-ingredients li::marker {
+  color: #8f1014;
 }
 
 .poster-3d-add {
@@ -287,18 +221,20 @@
   }
 
   .poster-3d-copy {
-    padding: 0 42px;
+    padding: 0 42px 18px;
   }
 
-  .poster-3d-stage {
-    min-height: 360px;
+  .poster-food-detail-image {
+    width: min(100%, 500px);
   }
 
-  .poster-3d-object {
-    width: min(80vw, 430px);
+  .poster-food-ingredients {
+    margin-top: 20px;
+    padding: 18px 20px;
   }
 
-  .poster-3d-floor-shadow {
-    bottom: 11%;
+  .poster-food-ingredients ul {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 }
