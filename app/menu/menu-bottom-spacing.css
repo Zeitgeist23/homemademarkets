@@ -1,6 +1,14 @@
+html,
+body {
+  background: #f7f0e4;
+}
+
 .poster-menu-page {
+  padding-top: 1px;
   padding-bottom: 32px;
+  margin-top: -1px;
   box-sizing: border-box;
+  background: #f7f0e4;
 }
 
 /* Keep the locked menu design intact while scaling the entire menu artwork down slightly. */
@@ -8,4 +16,5 @@
   width: 97.5%;
   margin-left: auto;
   margin-right: auto;
+  background: #f7f0e4;
 }
