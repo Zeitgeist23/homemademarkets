@@ -6,6 +6,7 @@ const MENU_IMAGE = '/homemade-markets-food-page.png?v=20260727-7';
 const MENU_ASPECT = 1660 / 910;
 const FACEBOOK_URL = 'https://www.facebook.com/HomemadeMarkets';
 const CART_KEY = 'homemade-markets-menu-cart-v2';
+const FOOD_DEPTH_LAYERS = Array.from({ length: 14 }, (_, index) => index);
 
 const MENU_ITEMS = [
   {
@@ -186,13 +187,15 @@ export default function FunctionalMenu() {
     const bounds = event.currentTarget.getBoundingClientRect();
     const horizontal = ((event.clientX - bounds.left) / bounds.width) - 0.5;
     const vertical = ((event.clientY - bounds.top) / bounds.height) - 0.5;
-    event.currentTarget.style.setProperty('--rotate-y', `${horizontal * 24}deg`);
-    event.currentTarget.style.setProperty('--rotate-x', `${vertical * -18}deg`);
+    event.currentTarget.style.setProperty('--rotate-y', `${-8 + horizontal * 30}deg`);
+    event.currentTarget.style.setProperty('--rotate-x', `${48 + vertical * -22}deg`);
+    event.currentTarget.style.setProperty('--rotate-z', `${-4 + horizontal * 6}deg`);
   }
 
   function resetFoodPreview(event) {
-    event.currentTarget.style.setProperty('--rotate-y', '0deg');
-    event.currentTarget.style.setProperty('--rotate-x', '0deg');
+    event.currentTarget.style.setProperty('--rotate-y', '-8deg');
+    event.currentTarget.style.setProperty('--rotate-x', '48deg');
+    event.currentTarget.style.setProperty('--rotate-z', '-4deg');
   }
 
   function orderSummary() {
@@ -266,10 +269,10 @@ export default function FunctionalMenu() {
             type="button"
             className={`poster-hotspot poster-view-button ${item.viewerHotspot}`}
             onClick={() => setPreviewItem(item)}
-            aria-label={`Open interactive 3D view of ${item.name}`}
-            title={`View ${item.name} in 3D`}
+            aria-label={`View ingredients and interactive 3D preview of ${item.name}`}
+            title={`View ingredients for ${item.name}`}
           >
-            <span className="poster-sr-only">View {item.name} in 3D</span>
+            <span className="poster-sr-only">View ingredients for {item.name}</span>
           </button>
         ))}
 
@@ -305,7 +308,7 @@ export default function FunctionalMenu() {
             <div className="poster-3d-copy">
               <span>Interactive 3D View</span>
               <h2 id="poster-3d-title">{previewItem.name}</h2>
-              <p>Move your pointer across the food to rotate it.</p>
+              <p>Move your pointer across the food to turn and tilt it.</p>
             </div>
             <div
               className="poster-3d-stage"
@@ -313,11 +316,22 @@ export default function FunctionalMenu() {
               onPointerLeave={resetFoodPreview}
             >
               <div
-                className={`poster-3d-food poster-3d-food-${previewItem.preview.shape}`}
+                className={`poster-3d-object poster-3d-object-${previewItem.preview.shape}`}
                 style={foodPreviewStyle(previewItem)}
                 role="img"
                 aria-label={`Interactive three-dimensional view of ${previewItem.name}`}
-              />
+              >
+                {FOOD_DEPTH_LAYERS.map((layer) => (
+                  <span
+                    key={layer}
+                    className="poster-3d-edge"
+                    style={{ '--depth-index': layer }}
+                    aria-hidden="true"
+                  />
+                ))}
+                <div className="poster-3d-food" aria-hidden="true" />
+                <div className="poster-3d-highlight" aria-hidden="true" />
+              </div>
               <div className="poster-3d-floor-shadow" aria-hidden="true" />
             </div>
             <button className="poster-3d-add" type="button" onClick={() => addItem(previewItem)}>
