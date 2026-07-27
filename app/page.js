@@ -78,7 +78,7 @@ export default function HomePage() {
               position: 'absolute',
               left: '68.8%',
               top: '2.2%',
-              width: '14.8%',
+              width: '28.0%',
               height: '6.1%',
               zIndex: 49,
               display: 'block',
@@ -87,9 +87,6 @@ export default function HomePage() {
             }}
           />
 
-          <a aria-label="Find Us at a Market" href="#market-dates" style={{ ...topButtonStyle, left: '83.5%' }}>
-            FIND US AT A MARKET
-          </a>
           <a aria-label="Order Now" href="#order" style={{ ...hotspotStyle, left: '10.9%', top: '80.0%', width: '11.6%', height: '5.8%' }} />
         </div>
       </section>
