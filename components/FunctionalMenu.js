@@ -3,7 +3,8 @@
 import { useEffect, useMemo, useState } from 'react';
 
 const MENU_IMAGE = '/homemade-markets-food-page.png?v=20260727-7';
-const MENU_ASPECT = 1660 / 910;
+const MENU_WIDTH = 1660;
+const MENU_HEIGHT = 910;
 const FACEBOOK_URL = 'https://www.facebook.com/HomemadeMarkets';
 const CART_KEY = 'homemade-markets-menu-cart-v2';
 
@@ -135,16 +136,14 @@ function formatMoney(value) {
   }).format(value);
 }
 
-function foodPreviewStyle(item) {
+function foodPreviewViewBox(item) {
   const { x, y, width, height } = item.preview;
-  const aspectRatio = (width * MENU_ASPECT) / height;
+  const cropX = (x / 100) * MENU_WIDTH;
+  const cropY = (y / 100) * MENU_HEIGHT;
+  const cropWidth = (width / 100) * MENU_WIDTH;
+  const cropHeight = (height / 100) * MENU_HEIGHT;
 
-  return {
-    '--food-aspect': `${aspectRatio}`,
-    '--food-crop-width': `${100 / width}%`,
-    '--food-crop-left': `${-(x / width) * 100}%`,
-    '--food-crop-top': `${-(y / height) * 100}%`,
-  };
+  return `${cropX} ${cropY} ${cropWidth} ${cropHeight}`;
 }
 
 export default function FunctionalMenu() {
@@ -346,16 +345,22 @@ export default function FunctionalMenu() {
               <span>Menu Item Details</span>
               <h2 id="poster-3d-title">{previewItem.name}</h2>
             </div>
-            <div
-              className={`poster-food-detail-image poster-food-detail-image-${previewItem.preview.shape}`}
-              style={foodPreviewStyle(previewItem)}
+            <svg
+              className="poster-food-detail-image"
+              viewBox={foodPreviewViewBox(previewItem)}
+              role="img"
+              aria-label={`Photograph of ${previewItem.name}`}
+              preserveAspectRatio="xMidYMid meet"
             >
-              <img
-                src={MENU_IMAGE}
-                alt={`Enlarged photograph of ${previewItem.name}`}
-                draggable="false"
+              <image
+                href={MENU_IMAGE}
+                x="0"
+                y="0"
+                width={MENU_WIDTH}
+                height={MENU_HEIGHT}
+                preserveAspectRatio="none"
               />
-            </div>
+            </svg>
             <div className="poster-food-ingredients">
               <h3>Ingredients</h3>
               <ul>
