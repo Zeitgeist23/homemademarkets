@@ -47,9 +47,46 @@
   box-shadow: 0 0 7px 3px rgba(251, 232, 209, 0.96);
 }
 
+/* Contact Us button placed directly beside Find Us at a Market. */
 .poster-facebook {
-  display: none !important;
-  pointer-events: none !important;
+  left: 68.7% !important;
+  top: 2.1% !important;
+  width: 12% !important;
+  height: 7.1% !important;
+  z-index: 6 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 0 !important;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #a61217 0%, #8f1014 100%) !important;
+  color: #fff !important;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(8px, 0.9vw, 16px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  box-shadow: 0 1px 2px rgba(75, 0, 0, 0.28);
+}
+
+.poster-facebook::before {
+  content: "CONTACT US";
+}
+
+.poster-facebook:hover,
+.poster-facebook:focus,
+.poster-facebook:focus-visible,
+.poster-facebook:active {
+  border-color: transparent !important;
+  background: linear-gradient(180deg, #a61217 0%, #8f1014 100%) !important;
+  outline: none !important;
+  box-shadow: 0 1px 2px rgba(75, 0, 0, 0.28) !important;
 }
 
 .poster-place-order {
