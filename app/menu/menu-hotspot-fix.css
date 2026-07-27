@@ -4,6 +4,15 @@
   touch-action: manipulation;
 }
 
+.poster-add-button:hover,
+.poster-add-button:focus-visible,
+.poster-add-button:active {
+  border-color: transparent !important;
+  background: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 /* Align the lower-row click targets with the visible + Add buttons in the menu artwork. */
 .poster-add-jambalaya {
   left: 46%;
