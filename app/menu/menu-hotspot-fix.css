@@ -32,6 +32,26 @@
   pointer-events: none !important;
 }
 
+.poster-place-order {
+  left: 13.65%;
+  top: 89.75%;
+  width: 13%;
+  height: 6%;
+  cursor: pointer !important;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+.poster-place-order:hover,
+.poster-place-order:focus,
+.poster-place-order:focus-visible,
+.poster-place-order:active {
+  border-color: transparent !important;
+  background: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 /* Align the lower-row click targets with the visible + Add buttons in the menu artwork. */
 .poster-add-jambalaya {
   left: 46%;
