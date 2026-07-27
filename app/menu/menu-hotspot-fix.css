@@ -18,7 +18,7 @@
   pointer-events: none !important;
 }
 
-/* Cover the original top-right button artwork so the live buttons match the hero exactly. */
+/* Cover the original top-right button artwork and the two red underline strokes so the live buttons match the hero exactly. */
 .poster-menu-stage::before {
   content: "";
   position: absolute;
@@ -26,7 +26,7 @@
   top: 2.2%;
   z-index: 3;
   width: 28%;
-  height: 6.1%;
+  height: 7.2%;
   pointer-events: none;
   background: linear-gradient(
     180deg,
