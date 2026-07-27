@@ -12,7 +12,7 @@
 }
 
 .poster-view-button::after {
-  content: "VIEW IN 3D";
+  content: "VIEW INGREDIENTS";
   position: absolute;
   left: 50%;
   bottom: 8px;
