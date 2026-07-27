@@ -13,6 +13,25 @@
   box-shadow: none !important;
 }
 
+.poster-see-menu:hover,
+.poster-see-menu:focus,
+.poster-see-menu:focus-visible,
+.poster-see-menu:active,
+.poster-find-market:hover,
+.poster-find-market:focus,
+.poster-find-market:focus-visible,
+.poster-find-market:active {
+  border-color: transparent !important;
+  background: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.poster-facebook {
+  display: none !important;
+  pointer-events: none !important;
+}
+
 /* Align the lower-row click targets with the visible + Add buttons in the menu artwork. */
 .poster-add-jambalaya {
   left: 46%;
