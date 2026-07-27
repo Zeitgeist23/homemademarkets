@@ -47,20 +47,20 @@
   box-shadow: 0 0 7px 3px rgba(251, 232, 209, 0.96);
 }
 
-/* Contact Us button matches the Find Us at a Market button. */
+/* Contact Us matches the exact visible size and dark-red tone of Find Us at a Market. */
 .poster-facebook {
-  left: 65.8% !important;
-  top: 2.1% !important;
-  width: 15% !important;
-  height: 7.1% !important;
+  left: 67.53% !important;
+  top: 2.76% !important;
+  width: 14.17% !important;
+  height: 4.95% !important;
   z-index: 6 !important;
   display: flex !important;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  border: 0 !important;
-  border-radius: 6px;
-  background: linear-gradient(180deg, #900408 0%, #780000 100%) !important;
+  border: 1px solid rgba(105, 0, 0, 0.55) !important;
+  border-radius: 7px;
+  background: #7e0202 !important;
   color: #fff !important;
   font-family: Arial, Helvetica, sans-serif;
   font-size: clamp(8px, 0.9vw, 16px);
@@ -72,7 +72,7 @@
   white-space: nowrap;
   cursor: pointer !important;
   pointer-events: auto !important;
-  box-shadow: 0 1px 2px rgba(75, 0, 0, 0.28);
+  box-shadow: 0 2px 4px rgba(75, 0, 0, 0.28);
 }
 
 .poster-facebook::before {
@@ -83,10 +83,10 @@
 .poster-facebook:focus,
 .poster-facebook:focus-visible,
 .poster-facebook:active {
-  border-color: transparent !important;
-  background: linear-gradient(180deg, #900408 0%, #780000 100%) !important;
+  border-color: rgba(105, 0, 0, 0.55) !important;
+  background: #7e0202 !important;
   outline: none !important;
-  box-shadow: 0 1px 2px rgba(75, 0, 0, 0.28) !important;
+  box-shadow: 0 2px 4px rgba(75, 0, 0, 0.28) !important;
 }
 
 .poster-place-order {
