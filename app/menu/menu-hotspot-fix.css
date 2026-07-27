@@ -1,0 +1,27 @@
+.poster-add-button {
+  cursor: pointer !important;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+/* Align the lower-row click targets with the visible + Add buttons in the menu artwork. */
+.poster-add-jambalaya {
+  left: 46%;
+  top: 89.9%;
+  width: 7.3%;
+  height: 5.4%;
+}
+
+.poster-add-banana {
+  left: 65.7%;
+  top: 89.9%;
+  width: 7.3%;
+  height: 5.4%;
+}
+
+.poster-add-tiramisu {
+  left: 85.5%;
+  top: 89.9%;
+  width: 7.3%;
+  height: 5.4%;
+}
