@@ -1,27 +1,25 @@
 .menu-page {
+  width: 100%;
   min-height: 100vh;
   margin: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  overflow: auto;
+  overflow: visible;
   background: #f7f0e4;
 }
 
 .menu-poster {
   position: relative;
-  width: min(100vw, 66.6667vh);
+  width: 100%;
+  max-width: none;
   aspect-ratio: 2 / 3;
-  flex: 0 0 auto;
+  margin: 0;
 }
 
 .menu-poster-image {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
   margin: 0;
   padding: 0;
-  object-fit: contain;
 }
 
 .menu-hotspot {
@@ -70,12 +68,6 @@
 .menu-tiramisu { left: 51.5%; top: 74.6%; width: 47%; height: 17.7%; }
 .menu-qr-link { left: 41.5%; top: 91.7%; width: 16%; height: 7.2%; }
 .menu-facebook-link { left: 64%; top: 91.7%; width: 34%; height: 7.2%; }
-
-@media (max-aspect-ratio: 2 / 3) {
-  .menu-poster {
-    width: 100vw;
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
   .menu-hotspot {
