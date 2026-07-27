@@ -11,8 +11,11 @@
   width: 100%;
   margin: 0;
   padding: 0;
+  overflow: hidden;
   line-height: 0;
   background: #f7f0e4;
+  border: 0;
+  outline: 0;
 }
 
 .poster-menu-image {
@@ -21,6 +24,10 @@
   height: auto;
   margin: 0;
   padding: 0;
+  border: 0;
+  outline: 0;
+  background: #f7f0e4;
+  clip-path: inset(2px);
 }
 
 .poster-menu-anchor {
