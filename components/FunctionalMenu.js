@@ -137,15 +137,13 @@ function formatMoney(value) {
 
 function foodPreviewStyle(item) {
   const { x, y, width, height } = item.preview;
-  const positionX = (x / (100 - width)) * 100;
-  const positionY = (y / (100 - height)) * 100;
   const aspectRatio = (width * MENU_ASPECT) / height;
 
   return {
-    '--food-image': `url("${MENU_IMAGE}")`,
-    '--food-size': `${100 / width}% auto`,
-    '--food-position': `${positionX}% ${positionY}%`,
     '--food-aspect': `${aspectRatio}`,
+    '--food-crop-width': `${100 / width}%`,
+    '--food-crop-left': `${-(x / width) * 100}%`,
+    '--food-crop-top': `${-(y / height) * 100}%`,
   };
 }
 
@@ -351,9 +349,13 @@ export default function FunctionalMenu() {
             <div
               className={`poster-food-detail-image poster-food-detail-image-${previewItem.preview.shape}`}
               style={foodPreviewStyle(previewItem)}
-              role="img"
-              aria-label={`Enlarged photograph of ${previewItem.name}`}
-            />
+            >
+              <img
+                src={MENU_IMAGE}
+                alt={`Enlarged photograph of ${previewItem.name}`}
+                draggable="false"
+              />
+            </div>
             <div className="poster-food-ingredients">
               <h3>Ingredients</h3>
               <ul>
