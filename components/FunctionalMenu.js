@@ -6,7 +6,6 @@ const MENU_IMAGE = '/homemade-markets-food-page.png?v=20260727-7';
 const MENU_ASPECT = 1660 / 910;
 const FACEBOOK_URL = 'https://www.facebook.com/HomemadeMarkets';
 const CART_KEY = 'homemade-markets-menu-cart-v2';
-const FOOD_DEPTH_LAYERS = Array.from({ length: 14 }, (_, index) => index);
 
 const MENU_ITEMS = [
   {
@@ -17,6 +16,11 @@ const MENU_ITEMS = [
     hotspot: 'poster-add-cheese',
     viewerHotspot: 'poster-view-cheese',
     preview: { x: 41.2, y: 18.2, width: 12.6, height: 23.2, shape: 'round' },
+    ingredients: [
+      'Wood-fired pizza crust',
+      'Pizza sauce',
+      'Mozzarella and provolone cheese',
+    ],
   },
   {
     id: 'pepperoni',
@@ -26,6 +30,12 @@ const MENU_ITEMS = [
     hotspot: 'poster-add-pepperoni',
     viewerHotspot: 'poster-view-pepperoni',
     preview: { x: 55.1, y: 18.1, width: 12.6, height: 23.3, shape: 'round' },
+    ingredients: [
+      'Wood-fired pizza crust',
+      'Pizza sauce',
+      'Mozzarella and provolone cheese',
+      'Fresh pepperoni on top',
+    ],
   },
   {
     id: 'bbq-chicken',
@@ -35,6 +45,13 @@ const MENU_ITEMS = [
     hotspot: 'poster-add-bbq',
     viewerHotspot: 'poster-view-bbq',
     preview: { x: 69.0, y: 18.1, width: 12.8, height: 23.3, shape: 'round' },
+    ingredients: [
+      'Wood-fired pizza crust',
+      'BBQ sauce',
+      'Fresh-cut chicken',
+      'Mozzarella and provolone cheese',
+      'Bacon bits on top',
+    ],
   },
   {
     id: 'veggie',
@@ -44,6 +61,17 @@ const MENU_ITEMS = [
     hotspot: 'poster-add-veggie',
     viewerHotspot: 'poster-view-veggie',
     preview: { x: 82.4, y: 18.1, width: 12.7, height: 23.4, shape: 'round' },
+    ingredients: [
+      'Wood-fired pizza crust',
+      'Pizza sauce',
+      'Garlic',
+      'Fresh spinach',
+      'Black olives',
+      'Mozzarella and provolone cheese',
+      'Fresh tomato slices on top',
+      'Fresh mozzarella',
+      'Fresh basil and oregano spices',
+    ],
   },
   {
     id: 'jambalaya',
@@ -53,6 +81,18 @@ const MENU_ITEMS = [
     hotspot: 'poster-add-jambalaya',
     viewerHotspot: 'poster-view-jambalaya',
     preview: { x: 41.4, y: 62.3, width: 17.4, height: 21.4, shape: 'plate' },
+    ingredients: [
+      'Short-grain rice',
+      'Olive oil',
+      'Garlic',
+      'Cajun spices',
+      'Andouille sausage',
+      'Red and green peppers',
+      'Salt',
+      'Black pepper',
+      'Black beans',
+      'Corn',
+    ],
   },
   {
     id: 'banana-bread',
@@ -62,6 +102,12 @@ const MENU_ITEMS = [
     hotspot: 'poster-add-banana',
     viewerHotspot: 'poster-view-banana',
     preview: { x: 60.9, y: 62.0, width: 17.2, height: 21.7, shape: 'plate' },
+    ingredients: [
+      'Enriched flour',
+      'Chocolate chips',
+      'Water',
+      'Fresh bananas',
+    ],
   },
   {
     id: 'tiramisu',
@@ -71,6 +117,14 @@ const MENU_ITEMS = [
     hotspot: 'poster-add-tiramisu',
     viewerHotspot: 'poster-view-tiramisu',
     preview: { x: 79.0, y: 62.0, width: 17.1, height: 21.7, shape: 'plate' },
+    ingredients: [
+      'Mascarpone cheese',
+      'Egg yolks',
+      'Sugar',
+      'Ladyfingers',
+      'Amaretto',
+      'Chocolate powder',
+    ],
   },
 ];
 
@@ -183,21 +237,6 @@ export default function FunctionalMenu() {
     });
   }
 
-  function moveFoodPreview(event) {
-    const bounds = event.currentTarget.getBoundingClientRect();
-    const horizontal = ((event.clientX - bounds.left) / bounds.width) - 0.5;
-    const vertical = ((event.clientY - bounds.top) / bounds.height) - 0.5;
-    event.currentTarget.style.setProperty('--rotate-y', `${-8 + horizontal * 30}deg`);
-    event.currentTarget.style.setProperty('--rotate-x', `${48 + vertical * -22}deg`);
-    event.currentTarget.style.setProperty('--rotate-z', `${-4 + horizontal * 6}deg`);
-  }
-
-  function resetFoodPreview(event) {
-    event.currentTarget.style.setProperty('--rotate-y', '-8deg');
-    event.currentTarget.style.setProperty('--rotate-x', '48deg');
-    event.currentTarget.style.setProperty('--rotate-z', '-4deg');
-  }
-
   function orderSummary() {
     const lines = selectedItems.map(
       (item) => `${item.quantity} x ${item.name} — ${formatMoney(item.quantity * item.price)}`,
@@ -269,7 +308,7 @@ export default function FunctionalMenu() {
             type="button"
             className={`poster-hotspot poster-view-button ${item.viewerHotspot}`}
             onClick={() => setPreviewItem(item)}
-            aria-label={`View ingredients and interactive 3D preview of ${item.name}`}
+            aria-label={`View enlarged photo and ingredients for ${item.name}`}
             title={`View ingredients for ${item.name}`}
           >
             <span className="poster-sr-only">View ingredients for {item.name}</span>
@@ -304,35 +343,24 @@ export default function FunctionalMenu() {
           }}
         >
           <section className="poster-3d-dialog" role="dialog" aria-modal="true" aria-labelledby="poster-3d-title">
-            <button className="poster-3d-close" type="button" onClick={() => setPreviewItem(null)} aria-label="Close 3D food view">×</button>
+            <button className="poster-3d-close" type="button" onClick={() => setPreviewItem(null)} aria-label="Close food details">×</button>
             <div className="poster-3d-copy">
-              <span>Interactive 3D View</span>
+              <span>Menu Item Details</span>
               <h2 id="poster-3d-title">{previewItem.name}</h2>
-              <p>Move your pointer across the food to turn and tilt it.</p>
             </div>
             <div
-              className="poster-3d-stage"
-              onPointerMove={moveFoodPreview}
-              onPointerLeave={resetFoodPreview}
-            >
-              <div
-                className={`poster-3d-object poster-3d-object-${previewItem.preview.shape}`}
-                style={foodPreviewStyle(previewItem)}
-                role="img"
-                aria-label={`Interactive three-dimensional view of ${previewItem.name}`}
-              >
-                {FOOD_DEPTH_LAYERS.map((layer) => (
-                  <span
-                    key={layer}
-                    className="poster-3d-edge"
-                    style={{ '--depth-index': layer }}
-                    aria-hidden="true"
-                  />
+              className={`poster-food-detail-image poster-food-detail-image-${previewItem.preview.shape}`}
+              style={foodPreviewStyle(previewItem)}
+              role="img"
+              aria-label={`Enlarged photograph of ${previewItem.name}`}
+            />
+            <div className="poster-food-ingredients">
+              <h3>Ingredients</h3>
+              <ul>
+                {previewItem.ingredients.map((ingredient) => (
+                  <li key={ingredient}>{ingredient}</li>
                 ))}
-                <div className="poster-3d-food" aria-hidden="true" />
-                <div className="poster-3d-highlight" aria-hidden="true" />
-              </div>
-              <div className="poster-3d-floor-shadow" aria-hidden="true" />
+              </ul>
             </div>
             <button className="poster-3d-add" type="button" onClick={() => addItem(previewItem)}>
               Add {previewItem.name} — {formatMoney(previewItem.price)}
