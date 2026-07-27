@@ -72,9 +72,20 @@ export default function HomePage() {
           <a aria-label="Catering" href="#catering" style={{ ...hotspotStyle, left: '26.3%', top: '2.6%', width: '6.2%', height: '5.2%' }} />
           <a aria-label="Shop" href="#shop" style={{ ...hotspotStyle, left: '33.2%', top: '2.6%', width: '4.2%', height: '5.2%' }} />
 
-          <a aria-label="See Our Menu" href="/menu" style={{ ...topButtonStyle, left: '69.0%' }}>
-            SEE OUR MENU
-          </a>
+          <span
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              left: '68.8%',
+              top: '2.2%',
+              width: '13.5%',
+              height: '6.1%',
+              zIndex: 49,
+              display: 'block',
+              background: 'linear-gradient(180deg, #fbe9d5 0%, #fbe6cf 50%, #fbe8d3 100%)',
+              pointerEvents: 'none',
+            }}
+          />
 
           <a aria-label="Find Us at a Market" href="#market-dates" style={{ ...topButtonStyle, left: '83.5%' }}>
             FIND US AT A MARKET
