@@ -30,9 +30,9 @@
 
 .poster-facebook {
   left: 68.7% !important;
-  top: 2.1% !important;
+  top: 0.5% !important;
   width: 12% !important;
-  height: 7.1% !important;
+  height: 5.3% !important;
   z-index: 6 !important;
   display: flex !important;
   align-items: center;
@@ -43,9 +43,9 @@
   background: #8f1014 !important;
   color: #fff !important;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: clamp(8px, 1vw, 17px);
+  font-size: clamp(8px, 0.9vw, 16px);
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   line-height: 1;
   text-align: center;
   text-decoration: none;
