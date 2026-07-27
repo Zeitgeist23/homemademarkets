@@ -131,6 +131,7 @@
 
 .poster-food-detail-image {
   position: relative;
+  isolation: isolate;
   grid-column: 1;
   width: 100%;
   max-width: 210px;
@@ -143,13 +144,25 @@
 }
 
 .poster-food-detail-image img {
-  position: absolute;
-  left: var(--food-crop-left);
-  top: var(--food-crop-top);
-  display: block;
-  width: var(--food-crop-width);
-  max-width: none;
-  height: auto;
+  position: absolute !important;
+  z-index: 1 !important;
+  left: var(--food-crop-left) !important;
+  top: var(--food-crop-top) !important;
+  right: auto !important;
+  bottom: auto !important;
+  display: block !important;
+  width: var(--food-crop-width) !important;
+  min-width: var(--food-crop-width) !important;
+  max-width: none !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+  transform: none !important;
+  object-fit: initial !important;
   user-select: none;
   pointer-events: none;
 }
