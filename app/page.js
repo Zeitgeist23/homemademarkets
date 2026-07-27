@@ -25,7 +25,7 @@ const topButtonStyle = {
   boxShadow: '0 1px 3px rgba(60, 0, 0, 0.34)',
   fontFamily: 'Arial, sans-serif',
   fontSize: 'clamp(8px, 0.81vw, 14.4px)',
-  fontWeight: 700,
+  fontWeight: 400,
   letterSpacing: '0.08em',
   whiteSpace: 'nowrap',
   cursor: 'pointer',
