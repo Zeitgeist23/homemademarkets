@@ -28,34 +28,34 @@
   box-shadow: none !important;
 }
 
+/* Use the original red button artwork. Only the baked-in words are replaced. */
 .poster-facebook {
-  left: 68.7% !important;
-  top: 0.5% !important;
-  width: 12% !important;
-  height: 5.3% !important;
+  left: 70.34% !important;
+  top: 0 !important;
+  width: 11.9% !important;
+  height: 5.02% !important;
   z-index: 6 !important;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
+  display: block !important;
   box-sizing: border-box;
   border: 0 !important;
-  border-radius: 6px;
-  background: #8f1014 !important;
-  color: #fff !important;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: clamp(8px, 0.9vw, 16px);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  line-height: 1;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: transparent !important;
   cursor: pointer !important;
   pointer-events: auto !important;
 }
 
 .poster-facebook::before {
-  content: "CONTACT US";
+  content: "";
+  position: absolute;
+  left: 11.16%;
+  top: 25.49%;
+  width: 78.14%;
+  height: 50.98%;
+  background-image: url("data:image/webp;base64,UklGRggKAABXRUJQVlA4IPwJAABwKwCdASqoABoAAAAAJaAC7MxL8r8v+MH7M/5n5Y6r/WPvH+3GWsc8/4r+Z/st2RPyr/qvcA/VP+q9TP9gPUB/C/5d/wf7L7Ln+Q9gH65fiB8gH8v/qvWAfsl7A36q+qn/q/+T/n/gt/ZH/of534Cf1q/6H5/1IH59+EH68f1PogvRfY/5P+E/69f4bWDf4X/IPw+/Xf/CZyJ8u/l/41/2X/If4r0VfxA5w38X/j/4xfzfku/0n3AP4Z/LP7P/UP13/wH/0+YL8+/FL/Ae9r8S/nH9P/Hf+k/YF/Dv4l/Qv6r+t39a/6/0q9R1+nx2bG3PGVbFeQEhZZ+3azoh93wOGFi1PyDZZF+vUXl+u86O8ltVl2tBiPzEiG2UXHHBU8Wb1SNBvviGIWuSln//4v5tqdoxmekjKHFDIx7yIXGj6QTlS1JoQjTwoqy36gFHCcQ6WaZbXrzmVeW+JNiRLae8RAr6AAD+//+Eiqvn7gMNcsev/eLrAxYuownyWqB1An/+N5XVXPdhT//xJRHSC/9S3Ed3Bo+gLAleJgJ2wQ13A+b15il6u7I2mMJfboE2dkS5/7Ax5Yz6CUjPaUz238lX9MyI06vEfUMBa7l1cJFFGnTNU8DeAN1nsaA6EmXxxcX7SGw/T9GiFFzxiQCgHu7tUFErrePB/uS+bVW08GJAUPWOpVw/WX0KTMpkUhKwkE+OncK+BXkMcb/VjtkbvGeYoQRGQZD0JX2o8MTLIMqLZw/M6XiZW8iAWpHz/nmk/5ECXDS89GkHjKzhmCrVGAMsUu32+7vIVII+mEen+3cD/vqi/n9YrHphHTczVBiY65v//Vq+wg8ThQnertQLgkdxpSpoxV9O1Kl6RUFaZpFNGPpsQ9PH05pR9F//qCRLO7i37gqPoEo08N8fzso+6lLkaQhdvXfa81MP6JmIa4wMNrUyJnvQbme9jwLxtQnWvW2VbUETi1A4TT+iZ/wssnX8yO/+MD+jVbDMJ4SbD6QgRWOD/847vcVAZqOpHtmmYgQvJnlPdqqPWJSkJ9XxBIG84L2coiIBt5cistOGj5kIlgTBgrr70sYDJWPwt9CxM2ox9++cqykS56KEayryztH2xy+M41XYwqJYBB78bM6tufFz+21Y/poP/KI8p2eIzE4uGcIjwCbYUvTk/KyqbFu23fcLqlWb//Tuob/+6XD3Rf/ErdmAtX7JaLg1X/2nZOSpLOiSZKIS35HntAMYDFuKlDI07zC8AEKf3thtDgQU2Cz8r9+T35xDex1H1oc0GW9eYrqyjT85Y3u2G8dnwAvq2G1Ue7rK8+5AzREqCqXXB9aqU9cGQf752VXacOfW9m21XPQF8jAI/PiaWO43FC+TD/EH//x2WUUBOOsZaBcJ5Zy8cNo+h4VhaPD50yh8Bz1MarmNp0wNkTppFRKketc4jqJThUWpFRLJ6LKc4ThZ+QCcTZfwSWc4sLb/vCXpESvzFybbkI3Z/Ep5JlDru+d9akN01BlvTjk+k6KVDiyqY785Rj8Ih4yiPYe+po3MTyFYEcWA6T8cpByOe/2DOQOJ4nqlASuLTxnc0XSOO/B6unKYqj5Ke5fyPvZumR9qLrKPlySAIhj6r5Occ1U/Xr8kdNtF9AMSwH1waNlvWoP8fe2UZldmcYr5haEHMmOkDxDGPlw8CyXAVWAntwkHX0/JJaWr4BtAqqBZ//eXzIbUZG+eliIkPr/Qg7UyqPsRX22yWXtCuJ+/3Is0dYt4JXoXjYgE23fOopbTYaTiwLyaVm64N1zSBJovoXellwySrJEX7wMcdJ0q0dWq4YrWf6aMmZPp4lRIZuxefNEuNlSiqIN2XH+9b1yqlk3Z51yIr50a+0fR4QB/es+By9v//2Mja0MNZhoKqlk40Gkc1ucdzW6KUs8GRWVme1kOOrr+s4YzHEIFCX679Wb39lmkrhsAqU7b/PQBnYDkoH9VH/xhIibbfRqdTsCrYc/rAfO0uYLmiqVZ9DcSHWUqnN57cEv48CcZBuhGNTOJ/I0PxwSWz/ayS78UFbCJQCRXeOHwl2OfsptQte6Jav1OSvQffLESR4b1NAFMhzveuqDOM1H7lk+erlBWszJHPNUBKiisj3ehO/hliS5tJ5bm0/rSD/YfuWJHCwWMf8mE0GLEW6KKOii+//zZljB4AyZk57Ia8C/mgMyhUh3Scrr1CgBPapvSkDWHM5JuDwazoab319GYxN/a+slHKJWsYmM8Zf0gpRMdUczBeK45hhfrVILQUoiMqvLfVv1lrBjD+E6Zg8/snWduYN9TJD/flTrn8yGKS/PQZpW4JdYMTPdf8lX21hFrOPFCFk/CBIfXigj+eOSnDg1Ur1SLqVky7ggFPT+3lKaz1bFARgqElJIKooQq6lcPf0j2Ff9RV9d7a5CcOJPOjIAD8nS17f8rl6s1Eq8DBVowtr+rDvQ0ghI4zmqx4FjLu/euo2anVsbghtdQVZEdMm1sII2ybuOFtzmGrKBI9BOqopKdzwxswb2d03vNfudXSHAIziSRAsTbCMk2SoMlYveQWCnBqyGnEPJh2z4MF+OyTJ2iqS+2ebWoXC+gztxoHG3fYzaBWCHTnF3aG+muP/+P2W5WzFBm7U56OsRkv9USVZqiamGrR5LufRaPBCBT3X1HhysP//+4y8S/AzbJt90tsOoV9YgiyMntWHxUOGIWsTwFE/obAjXkiP1Q+Td2aj+9CjvvzE1tYcu05+w7UYjLpRTTaQSvbb3zhoUrB+JTJsnR9kW7YQEMPcpo5zVQIB8lPepc7oWIKKj5uRHr4skAGrI4lrLnqVtboV0ONytAOzQu9YN/Xg9ZoEtWMl78+eEZ/Aj7o/WE72P2clumfWwxu/7SjZ0JyYi130rKZgpgHr+QMf0OH8HUCbunfJzoWMPpYm1AGBjixI5SjjIKzExOwCI5xdC3HQUv0a2D6fQT1gv9G9W8o09WWfUT8CPRLf4HVrVnxJv6+F7VlMorYXDZmoywlJHJPCBnRiD7VbFkw388ueHVK3j6hJTPfoKClQtKdCPQe99CRWVOgy1iyCSWNzkSf0Ffs4RyU7qBJG3YsQYULVe9OdSRZTjPscl0pnO/OP2Xmrv9K22fsfJgnkPJuhzSklMkD/4zSTDr35M8mEacYH7Q0/RIpbOHICZHBTlLBy5FADfat2kyXaoYH3QJ2Gu0y7BX7APgVrBWWtfN20l0NtAnd8QyMMeBPgHkrigmrVqGBiwjIklyDy1BD2AVpQzJ+LW3vKq17UtvZfvMNNC3xyeN/59abllJlrrcdVyXShnxfh9AqRGxobKmmm6cFvxRCpg+P2sXllt0upyut8ZJfdFqcL9JuBLhyLxT0nJc3gVXyKVPcaICzdfd20NTCZUa6n4EvkBuTo6gtt+dLBvvQfPAOAA34AA=");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
 }
 
 .poster-facebook:hover,
@@ -63,7 +63,7 @@
 .poster-facebook:focus-visible,
 .poster-facebook:active {
   border-color: transparent !important;
-  background: #8f1014 !important;
+  background: transparent !important;
   outline: none !important;
   box-shadow: none !important;
 }
