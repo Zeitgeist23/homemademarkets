@@ -78,7 +78,7 @@ export default function HomePage() {
               position: 'absolute',
               left: '68.8%',
               top: '2.2%',
-              width: '13.5%',
+              width: '14.8%',
               height: '6.1%',
               zIndex: 49,
               display: 'block',
