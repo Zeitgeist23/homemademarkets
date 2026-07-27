@@ -18,60 +18,50 @@
   pointer-events: none !important;
 }
 
-.poster-find-market:hover,
-.poster-find-market:focus,
-.poster-find-market:focus-visible,
-.poster-find-market:active {
-  border-color: transparent !important;
-  background: transparent !important;
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-/* Cover only the original See Our Menu artwork in its actual button position. */
+/* Cover the original top-right button artwork so the live buttons match the hero exactly. */
 .poster-menu-stage::before {
   content: "";
   position: absolute;
-  left: 68.55%;
-  top: 1.95%;
+  left: 68.8%;
+  top: 2.2%;
   z-index: 3;
-  width: 12.3%;
-  height: 7.4%;
+  width: 28%;
+  height: 6.1%;
   pointer-events: none;
   background: linear-gradient(
     180deg,
-    #fbe9d3 0%,
-    #fbe7cf 52%,
-    #fbe9d4 100%
+    #fbe9d5 0%,
+    #fbe6cf 50%,
+    #fbe8d3 100%
   );
-  box-shadow: 0 0 7px 3px rgba(251, 232, 209, 0.96);
 }
 
-/* Match the visible Find Us at a Market button dimensions and finish exactly. */
+/* Match both menu-page header buttons to the two hero-page buttons. */
+.poster-find-market,
 .poster-facebook {
-  left: 67.79% !important;
-  transform: translateX(-5px);
-  top: 3.69% !important;
-  width: 13.91% !important;
-  height: 4.86% !important;
+  top: 2.7% !important;
+  width: 11.6% !important;
+  height: 5% !important;
   z-index: 6 !important;
   display: flex !important;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  border: 1px solid rgba(105, 0, 0, 0.48) !important;
-  border-radius: 7px;
+  margin: 0;
+  padding: 0;
+  transform: none;
+  border: 1px solid rgba(84, 0, 0, 0.62) !important;
+  border-radius: 6px;
   background: linear-gradient(
     180deg,
-    #830706 0%,
-    #7d0101 20%,
-    #7e0101 76%,
-    #760000 100%
+    #7f0b0d 0%,
+    #760507 48%,
+    #6d0002 100%
   ) !important;
   color: #fff8f2 !important;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: clamp(8px, 0.88vw, 16px);
-  font-weight: 700;
+  font-family: Arial, sans-serif;
+  font-size: clamp(8px, 0.81vw, 14.4px);
+  font-weight: 400;
   letter-spacing: 0.08em;
   line-height: 1;
   text-align: center;
@@ -79,27 +69,42 @@
   white-space: nowrap;
   cursor: pointer !important;
   pointer-events: auto !important;
-  box-shadow: 0 1px 3px rgba(75, 0, 0, 0.28);
+  box-shadow: 0 1px 3px rgba(60, 0, 0, 0.34);
+}
+
+.poster-find-market {
+  left: 69.75% !important;
+}
+
+.poster-facebook {
+  left: calc(82.8% - 1.5px) !important;
+}
+
+.poster-find-market::before {
+  content: "FIND US AT A MARKET";
 }
 
 .poster-facebook::before {
   content: "CONTACT US";
 }
 
+.poster-find-market:hover,
+.poster-find-market:focus,
+.poster-find-market:focus-visible,
+.poster-find-market:active,
 .poster-facebook:hover,
 .poster-facebook:focus,
 .poster-facebook:focus-visible,
 .poster-facebook:active {
-  border-color: rgba(105, 0, 0, 0.48) !important;
+  border-color: rgba(84, 0, 0, 0.62) !important;
   background: linear-gradient(
     180deg,
-    #830706 0%,
-    #7d0101 20%,
-    #7e0101 76%,
-    #760000 100%
+    #7f0b0d 0%,
+    #760507 48%,
+    #6d0002 100%
   ) !important;
   outline: none !important;
-  box-shadow: 0 1px 3px rgba(75, 0, 0, 0.28) !important;
+  box-shadow: 0 1px 3px rgba(60, 0, 0, 0.34) !important;
 }
 
 .poster-place-order {
