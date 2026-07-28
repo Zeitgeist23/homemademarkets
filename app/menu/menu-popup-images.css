@@ -1,45 +1,43 @@
 .poster-food-photo {
+  grid-column: 1;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  max-width: 300px !important;
+  height: auto !important;
+  max-height: 360px;
+  margin: 0 auto !important;
+  object-fit: contain;
+  border: 0 !important;
   border-radius: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
 }
 
-.poster-food-photo-crop {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
+.poster-food-photo-cheese,
+.poster-food-photo-pepperoni,
+.poster-food-photo-bbq-chicken,
+.poster-food-photo-veggie {
+  clip-path: circle(47% at 50% 50%);
 }
 
-.poster-food-photo-crop > image {
-  display: none;
-}
-
-.poster-food-photo-crop[aria-label="Photograph of Pepperoni Pizza"] {
-  background-image: url('/menu-popup-pepperoni.svg?v=3');
-  clip-path: circle(48% at 50% 50%);
-}
-
-.poster-food-photo-crop[aria-label="Photograph of BBQ Chicken Pizza"] {
-  background-image: url('/menu-popup-bbq-chicken.svg?v=3');
-  clip-path: circle(48% at 50% 50%);
-}
-
-.poster-food-photo-crop[aria-label="Photograph of Veggie Pizza"] {
-  background-image: url('/menu-popup-veggie.svg?v=3');
-  clip-path: circle(48% at 50% 50%);
-}
-
-.poster-food-photo-crop[aria-label="Photograph of Homemade Jambalaya"] {
-  background-image: url('/menu-popup-jambalaya.svg?v=3');
+.poster-food-photo-jambalaya {
   clip-path: ellipse(49% 44% at 50% 52%);
 }
 
-.poster-food-photo-crop[aria-label="Photograph of Chocolate Chip Banana Bread"] {
-  background-image: url('/menu-popup-banana-bread.svg?v=3');
+.poster-food-photo-banana-bread {
   clip-path: ellipse(49% 46% at 50% 51%);
 }
 
-.poster-food-photo-crop[aria-label="Photograph of Classic Tiramisu"] {
-  background-image: url('/menu-popup-tiramisu.svg?v=3');
+.poster-food-photo-tiramisu {
   clip-path: inset(3% 4% 3% 4% round 18px);
+}
+
+@media (max-width: 720px) {
+  .poster-food-photo {
+    grid-column: 1;
+    width: min(100%, 300px) !important;
+    max-height: 42vh;
+  }
 }
