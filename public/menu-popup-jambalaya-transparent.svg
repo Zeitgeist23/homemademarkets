@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" role="img" aria-label="Homemade jambalaya">
+  <defs><clipPath id="food"><ellipse cx="160" cy="112" rx="154" ry="94"/></clipPath></defs>
+  <image href="/menu-popup-jambalaya.svg" x="0" y="0" width="320" height="220" preserveAspectRatio="xMidYMid slice" clip-path="url(#food)"/>
+</svg>
