@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="0 0 320 240" role="img" aria-label="Classic tiramisu">
+  <defs><clipPath id="food"><ellipse cx="160" cy="120" rx="150" ry="106"/></clipPath></defs>
+  <image href="/menu-popup-tiramisu.svg" x="0" y="0" width="320" height="240" preserveAspectRatio="xMidYMid slice" clip-path="url(#food)"/>
+</svg>
