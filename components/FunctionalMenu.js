@@ -2,8 +2,10 @@
 
 import { useEffect, useMemo, useState } from 'react';
 
-const MENU_IMAGE = '/homemade-markets-food-page.png?v=20260727-7';
-const MENU_ASPECT = 1660 / 910;
+const MENU_IMAGE_SOURCE = '/homemade-markets-food-page.png';
+const MENU_IMAGE = `${MENU_IMAGE_SOURCE}?v=20260727-8`;
+const MENU_WIDTH = 1660;
+const MENU_HEIGHT = 910;
 const FACEBOOK_URL = 'https://www.facebook.com/HomemadeMarkets';
 const CART_KEY = 'homemade-markets-menu-cart-v2';
 
@@ -15,7 +17,7 @@ const MENU_ITEMS = [
     unit: 'pizza',
     hotspot: 'poster-add-cheese',
     viewerHotspot: 'poster-view-cheese',
-    preview: { x: 41.2, y: 18.2, width: 12.6, height: 23.2, shape: 'round' },
+    preview: { x: 41.2, y: 18.2, width: 12.6, height: 23.2 },
     ingredients: [
       'Wood-fired pizza crust',
       'Pizza sauce',
@@ -29,7 +31,7 @@ const MENU_ITEMS = [
     unit: 'pizza',
     hotspot: 'poster-add-pepperoni',
     viewerHotspot: 'poster-view-pepperoni',
-    preview: { x: 55.1, y: 18.1, width: 12.6, height: 23.3, shape: 'round' },
+    preview: { x: 55.1, y: 18.1, width: 12.6, height: 23.3 },
     ingredients: [
       'Wood-fired pizza crust',
       'Pizza sauce',
@@ -44,7 +46,7 @@ const MENU_ITEMS = [
     unit: 'pizza',
     hotspot: 'poster-add-bbq',
     viewerHotspot: 'poster-view-bbq',
-    preview: { x: 69.0, y: 18.1, width: 12.8, height: 23.3, shape: 'round' },
+    preview: { x: 69.0, y: 18.1, width: 12.8, height: 23.3 },
     ingredients: [
       'Wood-fired pizza crust',
       'BBQ sauce',
@@ -60,7 +62,7 @@ const MENU_ITEMS = [
     unit: 'pizza',
     hotspot: 'poster-add-veggie',
     viewerHotspot: 'poster-view-veggie',
-    preview: { x: 82.4, y: 18.1, width: 12.7, height: 23.4, shape: 'round' },
+    preview: { x: 82.4, y: 18.1, width: 12.7, height: 23.4 },
     ingredients: [
       'Wood-fired pizza crust',
       'Pizza sauce',
@@ -80,7 +82,7 @@ const MENU_ITEMS = [
     unit: 'serving',
     hotspot: 'poster-add-jambalaya',
     viewerHotspot: 'poster-view-jambalaya',
-    preview: { x: 41.4, y: 62.3, width: 17.4, height: 21.4, shape: 'plate' },
+    preview: { x: 41.4, y: 62.3, width: 17.4, height: 21.4 },
     ingredients: [
       'Short-grain rice',
       'Olive oil',
@@ -101,7 +103,7 @@ const MENU_ITEMS = [
     unit: 'loaf',
     hotspot: 'poster-add-banana',
     viewerHotspot: 'poster-view-banana',
-    preview: { x: 60.9, y: 62.0, width: 17.2, height: 21.7, shape: 'plate' },
+    preview: { x: 60.9, y: 62.0, width: 17.2, height: 21.7 },
     ingredients: [
       'Enriched flour',
       'Chocolate chips',
@@ -116,7 +118,7 @@ const MENU_ITEMS = [
     unit: 'cup',
     hotspot: 'poster-add-tiramisu',
     viewerHotspot: 'poster-view-tiramisu',
-    preview: { x: 79.0, y: 62.0, width: 17.1, height: 21.7, shape: 'plate' },
+    preview: { x: 79.0, y: 62.0, width: 17.1, height: 21.7 },
     ingredients: [
       'Mascarpone cheese',
       'Egg yolks',
@@ -135,16 +137,21 @@ function formatMoney(value) {
   }).format(value);
 }
 
-function foodPreviewStyle(item) {
+function foodPreviewViewBox(item) {
   const { x, y, width, height } = item.preview;
-  const aspectRatio = (width * MENU_ASPECT) / height;
+  const cropX = (x / 100) * MENU_WIDTH;
+  const cropY = (y / 100) * MENU_HEIGHT;
+  const cropWidth = (width / 100) * MENU_WIDTH;
+  const cropHeight = (height / 100) * MENU_HEIGHT;
+  const paddingX = cropWidth * 0.025;
+  const paddingY = cropHeight * 0.025;
 
-  return {
-    '--food-aspect': `${aspectRatio}`,
-    '--food-crop-width': `${100 / width}%`,
-    '--food-crop-left': `${-(x / width) * 100}%`,
-    '--food-crop-top': `${-(y / height) * 100}%`,
-  };
+  return [
+    Math.max(0, cropX - paddingX),
+    Math.max(0, cropY - paddingY),
+    Math.min(MENU_WIDTH - cropX + paddingX, cropWidth + (paddingX * 2)),
+    Math.min(MENU_HEIGHT - cropY + paddingY, cropHeight + (paddingY * 2)),
+  ].join(' ');
 }
 
 export default function FunctionalMenu() {
@@ -346,16 +353,23 @@ export default function FunctionalMenu() {
               <span>Menu Item Details</span>
               <h2 id="poster-3d-title">{previewItem.name}</h2>
             </div>
-            <div
-              className={`poster-food-detail-image poster-food-detail-image-${previewItem.preview.shape}`}
-              style={foodPreviewStyle(previewItem)}
+            <svg
+              className="poster-food-detail-image"
+              viewBox={foodPreviewViewBox(previewItem)}
+              role="img"
+              aria-label={`Photograph of ${previewItem.name}`}
+              preserveAspectRatio="xMidYMid meet"
             >
-              <img
-                src={MENU_IMAGE}
-                alt={`Enlarged photograph of ${previewItem.name}`}
-                draggable="false"
+              <image
+                href={MENU_IMAGE_SOURCE}
+                xlinkHref={MENU_IMAGE_SOURCE}
+                x="0"
+                y="0"
+                width={MENU_WIDTH}
+                height={MENU_HEIGHT}
+                preserveAspectRatio="none"
               />
-            </div>
+            </svg>
             <div className="poster-food-ingredients">
               <h3>Ingredients</h3>
               <ul>
