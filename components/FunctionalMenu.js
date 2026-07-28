@@ -17,6 +17,7 @@ const MENU_ITEMS = [
     unit: 'pizza',
     hotspot: 'poster-add-cheese',
     viewerHotspot: 'poster-view-cheese',
+    image: '/cheese-pizza-photo.svg?v=1',
     preview: { x: 41.2, y: 18.2, width: 12.6, height: 23.2 },
     ingredients: [
       'Wood-fired pizza crust',
@@ -353,23 +354,34 @@ export default function FunctionalMenu() {
               <span>Menu Item Details</span>
               <h2 id="poster-3d-title">{previewItem.name}</h2>
             </div>
-            <svg
-              className="poster-food-detail-image"
-              viewBox={foodPreviewViewBox(previewItem)}
-              role="img"
-              aria-label={`Photograph of ${previewItem.name}`}
-              preserveAspectRatio="xMidYMid meet"
-            >
-              <image
-                href={MENU_IMAGE_SOURCE}
-                xlinkHref={MENU_IMAGE_SOURCE}
-                x="0"
-                y="0"
-                width={MENU_WIDTH}
-                height={MENU_HEIGHT}
-                preserveAspectRatio="none"
+
+            {previewItem.image ? (
+              <img
+                className="poster-food-photo"
+                src={previewItem.image}
+                alt={previewItem.name}
+                draggable="false"
               />
-            </svg>
+            ) : (
+              <svg
+                className="poster-food-photo poster-food-photo-crop"
+                viewBox={foodPreviewViewBox(previewItem)}
+                role="img"
+                aria-label={`Photograph of ${previewItem.name}`}
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <image
+                  href={MENU_IMAGE_SOURCE}
+                  xlinkHref={MENU_IMAGE_SOURCE}
+                  x="0"
+                  y="0"
+                  width={MENU_WIDTH}
+                  height={MENU_HEIGHT}
+                  preserveAspectRatio="none"
+                />
+              </svg>
+            )}
+
             <div className="poster-food-ingredients">
               <h3>Ingredients</h3>
               <ul>
@@ -378,6 +390,7 @@ export default function FunctionalMenu() {
                 ))}
               </ul>
             </div>
+
             <button className="poster-3d-add" type="button" onClick={() => addItem(previewItem)}>
               Add {previewItem.name} — {formatMoney(previewItem.price)}
             </button>
