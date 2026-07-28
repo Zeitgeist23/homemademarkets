@@ -16,19 +16,25 @@
   border-radius: 50%;
 }
 
-.poster-food-detail-image img {
+/* Render the food crop as a CSS background layer so a failed nested image
+   cannot display the browser's broken-image placeholder. */
+.poster-food-detail-image::before {
+  content: "";
   position: absolute;
-  display: block;
-  width: var(--food-crop-width);
-  max-width: none;
-  height: auto;
   left: var(--food-crop-left);
   top: var(--food-crop-top);
-  margin: 0;
-  padding: 0;
-  border: 0;
+  width: var(--food-crop-width);
+  aspect-ratio: 1.8241758242;
+  background-image: url('/homemade-markets-food-page.png?v=20260727-7');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 100% 100%;
   user-select: none;
   pointer-events: none;
+}
+
+.poster-food-detail-image img {
+  display: none !important;
 }
 
 @media (max-width: 720px) {
