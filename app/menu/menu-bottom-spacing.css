@@ -18,3 +18,14 @@ body {
   margin-right: auto;
   background: #f7f0e4;
 }
+
+/* Remove the circular bullets beside ingredients in the menu item pop-out. */
+.poster-food-ingredients ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.poster-food-ingredients li::marker {
+  content: "";
+}
