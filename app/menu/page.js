@@ -3,6 +3,7 @@ import './menu.css';
 import './menu-hotspot-fix.css';
 import './menu-bottom-spacing.css';
 import './menu-3d.css';
+import './menu-popup-image-fix.css';
 
 export const metadata = {
   title: 'Menu | Homemade Markets',
