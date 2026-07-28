@@ -75,7 +75,7 @@ const MENU_ITEMS = [
   {
     id: 'jambalaya',
     name: 'Homemade Jambalaya',
-    price: 10,
+    price: 23,
     unit: 'serving',
     hotspot: 'poster-add-jambalaya',
     viewerHotspot: 'poster-view-jambalaya',
