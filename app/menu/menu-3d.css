@@ -144,8 +144,43 @@
   box-shadow: 0 14px 30px rgba(61, 26, 10, 0.18);
 }
 
+.poster-food-photo[src^="/cheese-pizza-photo.svg"] {
+  content: url('/menu-popup-cheese.svg');
+}
+
 .poster-food-photo-crop {
   aspect-ratio: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.poster-food-photo-crop > image {
+  display: none;
+}
+
+.poster-food-photo-crop[aria-label="Photograph of Pepperoni Pizza"] {
+  background-image: url('/menu-popup-pepperoni.svg');
+}
+
+.poster-food-photo-crop[aria-label="Photograph of BBQ Chicken Pizza"] {
+  background-image: url('/menu-popup-bbq-chicken.svg');
+}
+
+.poster-food-photo-crop[aria-label="Photograph of Veggie Pizza"] {
+  background-image: url('/menu-popup-veggie.svg');
+}
+
+.poster-food-photo-crop[aria-label="Photograph of Homemade Jambalaya"] {
+  background-image: url('/menu-popup-jambalaya.svg');
+}
+
+.poster-food-photo-crop[aria-label="Photograph of Chocolate Chip Banana Bread"] {
+  background-image: url('/menu-popup-banana-bread.svg');
+}
+
+.poster-food-photo-crop[aria-label="Photograph of Classic Tiramisu"] {
+  background-image: url('/menu-popup-tiramisu.svg');
 }
 
 .poster-food-ingredients {
