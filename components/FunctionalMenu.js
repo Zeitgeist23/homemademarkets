@@ -2,10 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 
-const MENU_IMAGE_SOURCE = '/homemade-markets-food-page.png';
-const MENU_IMAGE = `${MENU_IMAGE_SOURCE}?v=20260727-8`;
-const MENU_WIDTH = 1660;
-const MENU_HEIGHT = 910;
+const MENU_IMAGE = '/homemade-markets-food-page.png?v=20260727-8';
 const FACEBOOK_URL = 'https://www.facebook.com/HomemadeMarkets';
 const CART_KEY = 'homemade-markets-menu-cart-v2';
 
@@ -17,8 +14,7 @@ const MENU_ITEMS = [
     unit: 'pizza',
     hotspot: 'poster-add-cheese',
     viewerHotspot: 'poster-view-cheese',
-    image: '/cheese-pizza-photo.svg?v=1',
-    preview: { x: 41.2, y: 18.2, width: 12.6, height: 23.2 },
+    image: '/cheese-pizza-photo.svg?v=3',
     ingredients: [
       'Wood-fired pizza crust',
       'Pizza sauce',
@@ -32,7 +28,7 @@ const MENU_ITEMS = [
     unit: 'pizza',
     hotspot: 'poster-add-pepperoni',
     viewerHotspot: 'poster-view-pepperoni',
-    preview: { x: 55.1, y: 18.1, width: 12.6, height: 23.3 },
+    image: '/menu-popup-pepperoni.svg?v=3',
     ingredients: [
       'Wood-fired pizza crust',
       'Pizza sauce',
@@ -47,7 +43,7 @@ const MENU_ITEMS = [
     unit: 'pizza',
     hotspot: 'poster-add-bbq',
     viewerHotspot: 'poster-view-bbq',
-    preview: { x: 69.0, y: 18.1, width: 12.8, height: 23.3 },
+    image: '/menu-popup-bbq-chicken.svg?v=3',
     ingredients: [
       'Wood-fired pizza crust',
       'BBQ sauce',
@@ -63,7 +59,7 @@ const MENU_ITEMS = [
     unit: 'pizza',
     hotspot: 'poster-add-veggie',
     viewerHotspot: 'poster-view-veggie',
-    preview: { x: 82.4, y: 18.1, width: 12.7, height: 23.4 },
+    image: '/menu-popup-veggie.svg?v=3',
     ingredients: [
       'Wood-fired pizza crust',
       'Pizza sauce',
@@ -83,7 +79,7 @@ const MENU_ITEMS = [
     unit: 'serving',
     hotspot: 'poster-add-jambalaya',
     viewerHotspot: 'poster-view-jambalaya',
-    preview: { x: 41.4, y: 62.3, width: 17.4, height: 21.4 },
+    image: '/menu-popup-jambalaya.svg?v=3',
     ingredients: [
       'Short-grain rice',
       'Olive oil',
@@ -104,7 +100,7 @@ const MENU_ITEMS = [
     unit: 'loaf',
     hotspot: 'poster-add-banana',
     viewerHotspot: 'poster-view-banana',
-    preview: { x: 60.9, y: 62.0, width: 17.2, height: 21.7 },
+    image: '/menu-popup-banana-bread.svg?v=3',
     ingredients: [
       'Enriched flour',
       'Chocolate chips',
@@ -119,7 +115,7 @@ const MENU_ITEMS = [
     unit: 'cup',
     hotspot: 'poster-add-tiramisu',
     viewerHotspot: 'poster-view-tiramisu',
-    preview: { x: 79.0, y: 62.0, width: 17.1, height: 21.7 },
+    image: '/menu-popup-tiramisu.svg?v=3',
     ingredients: [
       'Mascarpone cheese',
       'Egg yolks',
@@ -136,23 +132,6 @@ function formatMoney(value) {
     style: 'currency',
     currency: 'USD',
   }).format(value);
-}
-
-function foodPreviewViewBox(item) {
-  const { x, y, width, height } = item.preview;
-  const cropX = (x / 100) * MENU_WIDTH;
-  const cropY = (y / 100) * MENU_HEIGHT;
-  const cropWidth = (width / 100) * MENU_WIDTH;
-  const cropHeight = (height / 100) * MENU_HEIGHT;
-  const paddingX = cropWidth * 0.025;
-  const paddingY = cropHeight * 0.025;
-
-  return [
-    Math.max(0, cropX - paddingX),
-    Math.max(0, cropY - paddingY),
-    Math.min(MENU_WIDTH - cropX + paddingX, cropWidth + (paddingX * 2)),
-    Math.min(MENU_HEIGHT - cropY + paddingY, cropHeight + (paddingY * 2)),
-  ].join(' ');
 }
 
 export default function FunctionalMenu() {
@@ -355,32 +334,12 @@ export default function FunctionalMenu() {
               <h2 id="poster-3d-title">{previewItem.name}</h2>
             </div>
 
-            {previewItem.image ? (
-              <img
-                className="poster-food-photo"
-                src={previewItem.image}
-                alt={previewItem.name}
-                draggable="false"
-              />
-            ) : (
-              <svg
-                className="poster-food-photo poster-food-photo-crop"
-                viewBox={foodPreviewViewBox(previewItem)}
-                role="img"
-                aria-label={`Photograph of ${previewItem.name}`}
-                preserveAspectRatio="xMidYMid meet"
-              >
-                <image
-                  href={MENU_IMAGE_SOURCE}
-                  xlinkHref={MENU_IMAGE_SOURCE}
-                  x="0"
-                  y="0"
-                  width={MENU_WIDTH}
-                  height={MENU_HEIGHT}
-                  preserveAspectRatio="none"
-                />
-              </svg>
-            )}
+            <img
+              className={`poster-food-photo poster-food-photo-${previewItem.id}`}
+              src={previewItem.image}
+              alt={previewItem.name}
+              draggable="false"
+            />
 
             <div className="poster-food-ingredients">
               <h3>Ingredients</h3>
