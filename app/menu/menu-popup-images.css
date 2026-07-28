@@ -1,0 +1,43 @@
+.poster-food-photo {
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.poster-food-photo[alt="Cheese Pizza"] {
+  content: url('/menu-popup-cheese-transparent.svg?v=2');
+}
+
+.poster-food-photo-crop {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.poster-food-photo-crop > image {
+  display: none;
+}
+
+.poster-food-photo-crop[aria-label="Photograph of Pepperoni Pizza"] {
+  background-image: url('/menu-popup-pepperoni-transparent.svg?v=2');
+}
+
+.poster-food-photo-crop[aria-label="Photograph of BBQ Chicken Pizza"] {
+  background-image: url('/menu-popup-bbq-chicken-transparent.svg?v=2');
+}
+
+.poster-food-photo-crop[aria-label="Photograph of Veggie Pizza"] {
+  background-image: url('/menu-popup-veggie-transparent.svg?v=2');
+}
+
+.poster-food-photo-crop[aria-label="Photograph of Homemade Jambalaya"] {
+  background-image: url('/menu-popup-jambalaya-transparent.svg?v=2');
+}
+
+.poster-food-photo-crop[aria-label="Photograph of Chocolate Chip Banana Bread"] {
+  background-image: url('/menu-popup-banana-bread-transparent.svg?v=2');
+}
+
+.poster-food-photo-crop[aria-label="Photograph of Classic Tiramisu"] {
+  background-image: url('/menu-popup-tiramisu-transparent.svg?v=2');
+}
